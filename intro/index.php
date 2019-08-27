@@ -1,7 +1,7 @@
 <?php
 /*
 * PHP version 7
-* @category   PHP grunder
+* @category   PHP grunder: syntax, kommentarer, variabler, escape...
 * @author     karim
 * @license    PHP CC
 */
