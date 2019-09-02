@@ -31,8 +31,8 @@ echo "Hej!, Mitt namn är " . $namn . ", mitt efternamn är " . $mittEfternamn .
 echo "Hej!, Mitt namn är " . $namn . ", min ålder är " . $ålder . "<br>";
 
 /* Hur man sätter ihop text smartast */
-echo "Hej!, Mitt namn är $namn , hag bor på $gatuAddress<br>";
-echo 'Hej!, Mitt namn är $namn , hag bor på $gatuAddress<br>';
+echo "Hej!, Mitt namn är $namn, hag bor på $gatuAddress<br>";
+echo 'Hej!, Mitt namn är $namn, hag bor på $gatuAddress<br>';
 
 
 
