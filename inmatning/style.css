@@ -10,8 +10,8 @@ form {
     width: 500px;
     margin: 30px auto;
     padding: 30px;
-    background: rgb(247, 247, 247);
-    border: 1px solid #999;
-    box-shadow: 0 0 5px #bbb;
+    background: #f0f0f0;
+    border: 1px solid #DDD;
+    box-shadow: 0 0 5px #FFF;
     border-radius: 10px;
 }
