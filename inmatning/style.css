@@ -6,3 +6,12 @@ form {
     grid-template-columns: 1fr 2fr;
     grid-gap: 20px;
 }
+.kontainer {
+    width: 500px;
+    margin: 30px auto;
+    padding: 30px;
+    background: rgb(247, 247, 247);
+    border: 1px solid #999;
+    box-shadow: 0 0 5px #bbb;
+    border-radius: 10px;
+}
