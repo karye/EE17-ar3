@@ -1,0 +1,14 @@
+.kontainer {
+    width: 600px;
+    margin: 20px auto;
+    padding: 50px;
+}
+form {
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1em;
+}
+label, input {
+    align-self: center;
+}
