@@ -9,15 +9,15 @@
 </head>
 <body>
     <div class="kontainer">
-        <h1>Multiplicera</h1>
+        <h1>Multiplicera tal</h1>
         <?php
-        /* Ta emot data */
+        /* Ta emot data som skickas */
         $tal1 = $_REQUEST["tal1"];
         $tal2 = $_REQUEST["tal2"];
 
-        /* Skriv ut resultat */
+        /* Skriv ut resultatet */
         $resultat = $tal1 * $tal2;
-        echo "<p>Produkten av $tal1 och $tal2 är $resultat</p>";
+        echo "<p>Produkten av tal1 och tal2 är $resultat</p>";
         ?>
     </div>
 </body>

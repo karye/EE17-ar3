@@ -11,17 +11,15 @@
     <div class="kontainer">
         <h1>Bekräftelse</h1>
         <?php
-        /* Ta emot data */
+        /* Ta emot data som skickas */
         $namn = $_REQUEST["namn"];
         $epost = $_REQUEST["epost"];
         $kontaktad = $_REQUEST["kontaktad"];
 
-        /* Skriv ut resultat */
+        /* Skriv svaret */
         echo "<p>Namn: $namn</p>";
         echo "<p>Epost: $epost</p>";
-
-        //var_dump($kontaktad);
-        echo "<p>Vi kommer att kontakta dig inom snarast per $kontaktad.</p>";
+        echo "<p>Vi kommer att kontakta dig inom snarast per $kontaktad</p>";
         ?>
     </div>
 </body>

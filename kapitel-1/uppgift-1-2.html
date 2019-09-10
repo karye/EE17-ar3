@@ -15,18 +15,17 @@
         <label>Epost</label>
         <input type="email" name="epost" placeholder="Tex erik...@gmail.com" required>
         <label>Telefon</label>
-        <input type="tel" pattern="[0-9]{3}-[0-9]{7}" name="telefon" placeholder="070-8798679" required>
+        <input type="tel" pattern="0[0-9]{2}-[0-9]{7,9}" placeholder="0xx-xxxxxxxx" name="telefon">
 
         <label>Vill du ha nyhetsbrev?</label>
         <div>
-            <input type="radio" name="nyhetsbrev" value="Ja">Ja
-            <input type="radio" name="nyhetsbrev" value="Nej">Nej
+            <input type="checkbox" name="nyhetsbrev" value="Ja">Ja
         </div>
 
         <label>Hur vill du bli kontaktad?</label>
         <div>
-            <input type="checkbox" name="kontaktad" value="telefon">Telefon
-            <input type="checkbox" name="kontaktad" value="epost">Epost
+            <input type="radio" name="kontaktad" value="telefon">Telefon
+            <input type="radio" name="kontaktad" value="epost">Epost
         </div>
 
         <button class="primary">Skicka</button>
