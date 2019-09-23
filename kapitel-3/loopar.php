@@ -26,7 +26,7 @@
     echo "<p>";
     for ($i = 0; $i < 10; $i++) {
         $i10 = $i * 10;
-        echo " $i $i10<br>";
+        echo " $i * 10 = $i10<br>";
     }
     echo "</p>";
 

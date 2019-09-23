@@ -64,8 +64,6 @@
         $antalDagarTillHelg = 5 - date("N");
         echo "<p>Suck, du får vänta $antalDagarTillHelg dagar till nästa helg.</p>";
     }
-    
-
 
     ?>
 </body>

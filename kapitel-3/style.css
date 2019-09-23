@@ -1,6 +1,9 @@
 table {
     width: 300px;
 }
+.kol2 {
+    width: 600px;
+}
 form {
     width: 500px;
     margin: 30px auto;

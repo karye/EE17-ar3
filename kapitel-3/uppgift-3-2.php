@@ -9,10 +9,11 @@
 </head>
 <body>
     <?php
-    /* TODO: Kontrollera att varibeln finns */
-    $fel = $_REQUEST["fel"];
-    if ($fel == "ja") {
-        echo "<p>Fel användarnamn eller lösenord. Vg fördök igen</p>";
+    if (isset($_REQUEST["fel"])) {
+        $fel = $_REQUEST["fel"];
+        if ($fel == "ja") {
+            echo "<p>Fel användarnamn eller lösenord. Vg försök igen!</p>";
+        }
     }
     ?>
     <form action="./skript-3-2.php" method="POST">
