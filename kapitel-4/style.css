@@ -5,7 +5,7 @@ table {
     width: 600px;
 }
 form {
-    width: 400px;
+    width: 80%;
     margin: 30px auto;
     padding: 30px;
     display: grid;
@@ -14,7 +14,7 @@ form {
     background: #FFF;
 }
 .kontainer {
-    width: 500px;
+    width: 600px;
     margin: 30px auto;
     padding: 30px;
     background: #f0f0f0;
