@@ -17,7 +17,7 @@
     }
     ?>
     <form action="./skript-3-2.php" method="POST">
-        <h2>Kontaktuppgifter</h2><br>
+        <h2>Kontaktuppgifter</h2>
         <label>Användarnamn</label>
         <input type="text" name="anamn" placeholder="Tex erik12" required>
         <label>Lösenord</label>

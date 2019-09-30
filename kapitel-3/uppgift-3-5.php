@@ -12,7 +12,7 @@
 Mha radioknappar ska användaren kunna välja mellan 1, 3 och 5 års lånetid. 
 I en ruta ska användaren skriva i lånebeloppet och i nästa räntan i hela procent. -->
     <form action="./skript-3-5.php" method="POST">
-        <h2>Lånekalkylator</h2><br>
+        <h2>Lånekalkylator</h2>
         <label>Lånebelopp</label>
         <input type="number" name="belopp" required>
 

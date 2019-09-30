@@ -9,7 +9,7 @@
 </head>
 <body>
     <form action="./skript-3-3.php" method="POST">
-        <h2>Talserie</h2><br>
+        <h2>Talserie</h2>
         <label>Tal 1</label>
         <input type="number" name="tal1" required>
         <label>Tal 2</label>
