@@ -30,12 +30,15 @@ I en ruta ska användaren skriva i lånebeloppet och i nästa räntan i hela pro
             <button class="primary">Räkna ut</button>
         </form>
         <?php
-        if (isset($_REQUEST["belopp"], $_REQUEST["ranta"], $_REQUEST["tid"])) {
-            /* Ta emot data som skickas */
-            $belopp = filter_input(INPUT_POST, $belopp, FILTER_DEFAULT);
-            $ranta = filter_input(INPUT_POST, $ranta, FILTER_DEFAULT);
-            $tid = filter_input(INPUT_POST, $tid, FILTER_DEFAULT);
-    
+        /* Ta emot data som skickas */
+        $belopp = filter_input(INPUT_POST, 'belopp', FILTER_DEFAULT);
+        $ranta = filter_input(INPUT_POST, 'ranta', FILTER_DEFAULT);
+        $tid = filter_input(INPUT_POST, 'tid', FILTER_DEFAULT);
+
+        var_dump($belopp, $ranta, $tid);
+
+        /* Om data finns .. gör vi det vi ska... */
+        if ( $belopp && $ranta && $tid ) {
             /* Programmet ska sedan räkna ut den totala lånekostnaden. 
             (Räknas ut genom ränta på ränta-principen, årsvis). 
             Så för ett tvåårigt lån på 5000 med räntan 4% skulle alltså lånekostnaden bli 5000*1,04*1,04 - 5000 */

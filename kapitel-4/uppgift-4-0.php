@@ -21,11 +21,18 @@
             <button class="primary">Skicka</button>
         </form>
         <?php
-         if (isset($_POST["namn[0]"], $_POST["namn[1]"], $_POST["namn[2]"], $_POST["namn[3]"], $_POST["namn[4]"] )) {
-            /* Ta emot data som skickas */
-            $namn = filter_input_array(INPUT_POST, 'namn', FILTER_DEFAULT);
-            print_r($namn);
-         }
+
+        /* Ta emot data som skickas */
+        $namn = filter_input_array(INPUT_POST)["namn"];
+        if ($namn) {
+            //var_dump($namn);
+            
+            /* Loopa igenom arrayen och skriv namnen */
+            foreach ($namn as $namnet) {
+                echo "<p>$namnet</p>";
+            }
+        }
+        
         ?>
     </div>
 </body>
