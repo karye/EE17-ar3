@@ -66,9 +66,10 @@
             $morse[' '] = ' ';
 
             /* Dela upp texten i dess bokstäver */
-            $texten = mb_strtoupper($texten, 'UTF-8');
-            $delar = str_split($texten);
-            var_dump($delar);
+            $texten = mb_strtoupper($texten);
+            //$delar = str_split($texten);
+            $delar = preg_split('/(?<!^)(?!$)/u', $texten);
+            //var_dump($delar);
 
             /* Skriv ut texten i morsekod */
             echo "<form id=\"demo\"><label>$texten</label><input type=\"text\" pattern=\"[.\- ]+\" name=\"code\" value=\"";
