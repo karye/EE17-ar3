@@ -35,6 +35,7 @@ Utveckla skriptet i uppgift 6.2 så att det tar bort mellanslag i postnumret och
 
         /* Ta emot data som skickas */
         $losen = filter_input(INPUT_POST, 'losen', FILTER_SANITIZE_STRING);
+        $fel = true;
         $poäng = 0;
         $vPoäng = 0;
         $gPoäng = 0;
@@ -49,8 +50,7 @@ Utveckla skriptet i uppgift 6.2 så att det tar bort mellanslag i postnumret och
             foreach ($versaler as $tecken) {
                 $pos = strpos($losen, $tecken);
                 if ($pos !== false) {
-                    $poäng += 1;
-                    $fel = false;
+                    $vPoäng += 1;
                 }
             }
 
@@ -59,8 +59,7 @@ Utveckla skriptet i uppgift 6.2 så att det tar bort mellanslag i postnumret och
             foreach ($gemener as $tecken) {
                 $pos = strpos($losen, $tecken);
                 if ($pos !== false) {
-                    $poäng += 1;
-                    $fel = false;
+                    $gPoäng += 1;
                 }
             }
 
@@ -69,15 +68,13 @@ Utveckla skriptet i uppgift 6.2 så att det tar bort mellanslag i postnumret och
             foreach ($siffror as $tecken) {
                 $pos = strpos($losen, $tecken);
                 if ($pos !== false) {
-                    $poäng += 1;
-                    $fel = false;
+                    $sPoäng += 1;
                 }
             }
 
             /* Skall vara minst 8 tecken: strlen */
             if (strlen($losen) >= 8) {
-                $poäng += 1;
-                $fel = false;
+                $lPoäng += 1;
             }
 
             /* Skall innehålla minst ett specialtecken: #%&¤_*-+@!?()[]$£€ */
@@ -85,16 +82,19 @@ Utveckla skriptet i uppgift 6.2 så att det tar bort mellanslag i postnumret och
             foreach ($special as $tecken) {
                 $pos = strpos($losen, $tecken);
                 if ($pos !== false) {
-                    $poäng += 1;
-                    $fel = false;
+                    $spPoäng += 1;
                 }
             }
 
+            echo "<p>Ditt lösenord är: $losen</p>";
+            echo "<p>Poängen är: $vPoäng + $gPoäng + $sPoäng + $spPoäng + $lPoäng</p>";
+            
             /* Skriver ut poängen */
-            if ($fel) {
-                echo "<p>Ditt lösenord uppfyller inte alla kriterier.</p>";
+            if ($vPoäng == 0 || $gPoäng == 0 || $sPoäng == 0 || $spPoäng == 0 || $lPoäng== 0) {
+                echo "<p>Lösenordet uppfyller inte alla kriterier.</p>";
             } else {
-                echo "<p>Ditt lösenord fick $poäng poäng.</p>";
+                $poäng = $vPoäng + $gPoäng + $sPoäng + $spPoäng + $lPoäng;
+                echo "<p>Lösenordet fick $poäng poäng.</p>";
             }
         }
         ?>

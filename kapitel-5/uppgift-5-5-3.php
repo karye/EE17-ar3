@@ -35,7 +35,7 @@ Utveckla skriptet i uppgift 6.2 så att det tar bort mellanslag i postnumret och
 
         /* Ta emot data som skickas */
         $losen = filter_input(INPUT_POST, 'losen', FILTER_SANITIZE_STRING);
-        $poäng = 0;
+        $fel = true;
         $vPoäng = 0;
         $gPoäng = 0;
         $sPoäng = 0;
@@ -45,56 +45,35 @@ Utveckla skriptet i uppgift 6.2 så att det tar bort mellanslag i postnumret och
         if ($losen) {
             /* Tips: trim, strpos, strlen, strstr, explode, substr */
             /* Skall innehålla minst en stor bokstav */
-            $versaler = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Å', 'Ä', 'Ö'];
-            foreach ($versaler as $tecken) {
-                $pos = strpos($losen, $tecken);
-                if ($pos !== false) {
-                    $poäng += 1;
-                    $fel = false;
-                }
+            if (preg_match("/[A-ZÅÄÖ]/", $losen) > 0) {
+                $vPoäng += 1;
             }
-
             /* Skall innehålla minst en liten bokstav */
-            $gemener = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w',  'x', 'y', 'z', 'å', 'ä', 'ö'];
-            foreach ($gemener as $tecken) {
-                $pos = strpos($losen, $tecken);
-                if ($pos !== false) {
-                    $poäng += 1;
-                    $fel = false;
-                }
+            if (preg_match("/[a-zåäö]/", $losen) > 0) {
+                $gPoäng += 1;
             }
-
             /* Skall innehålla minst en siffra */
-            $siffror = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-            foreach ($siffror as $tecken) {
-                $pos = strpos($losen, $tecken);
-                if ($pos !== false) {
-                    $poäng += 1;
-                    $fel = false;
-                }
+            if (preg_match("/[0-9]/", $losen) > 0) {
+                $sPoäng += 1;
             }
-
-            /* Skall vara minst 8 tecken: strlen */
-            if (strlen($losen) >= 8) {
-                $poäng += 1;
-                $fel = false;
-            }
-
             /* Skall innehålla minst ett specialtecken: #%&¤_*-+@!?()[]$£€ */
-            $special = ['#', '%', '&', '¤', '_', '*', '-', '+', '@', '!', '?', '(', ')', '[', ']', '$', '£', '€'];
-            foreach ($special as $tecken) {
-                $pos = strpos($losen, $tecken);
-                if ($pos !== false) {
-                    $poäng += 1;
-                    $fel = false;
-                }
+            if (preg_match("/[#%&¤_\*\-\+\@\!\?\(\)\[\]\$£€]/", $losen) > 0) {
+                $spPoäng += 1;
+            }
+            /* Skall vara minst 8 tecken */
+            if (preg_match("/^.{8,40}$/", $losen) > 0) {
+                $lPoäng += 1;
             }
 
+            echo "<p>Ditt lösenord är: $losen</p>";
+            echo "<p>Poängen är: $vPoäng + $gPoäng + $sPoäng + $spPoäng + $lPoäng</p>";
+            
             /* Skriver ut poängen */
-            if ($fel) {
-                echo "<p>Ditt lösenord uppfyller inte alla kriterier.</p>";
+            if ($vPoäng == 0 || $gPoäng == 0 || $sPoäng == 0 || $spPoäng == 0 || $lPoäng== 0) {
+                echo "<p>Lösenordet uppfyller inte alla kriterier.</p>";
             } else {
-                echo "<p>Ditt lösenord fick $poäng poäng.</p>";
+                $poäng = $vPoäng + $gPoäng + $sPoäng + $spPoäng + $lPoäng;
+                echo "<p>Lösenordet fick $poäng poäng.</p>";
             }
         }
         ?>
