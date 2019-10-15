@@ -38,14 +38,16 @@ Utveckla skriptet i uppgift 6.2 så att det tar bort mellanslag i postnumret och
         if ($epost) {
             /* Ur epostadressen plocka ut namnet och domänen, enligt formen "namn@domän". Tips: trim, strpos, strlen, strstr, explode, substr */
 
-            /* Lösning med explode */
+            /* Lösning med explode() */
             $delar = explode('@', $epost);
-            echo "<p>Namnet är $delar[0]</p>";
-            echo "<p>Domänen är $delar[1]</p>";
+            echo "<h3>Lösning med explode()</h3>";
+            echo "<p>Namnet är: $delar[0]</p>";
+            echo "<p>Domänen är: $delar[1]</p>";
 
-            /* Lösning med strstr */
-            echo "<p>Namn är " . strstr($epost, '@',true) . "</p>";
-            echo "<p>Domänen är " . strstr($epost, '@') . "</p>";
+            /* Lösning med strstr() */
+            echo "<h3>Lösning med strstr()</h3>";
+            echo "<p>Namn är: " . strstr($epost, '@',true) . "</p>";
+            echo "<p>Domänen är: " . strstr($epost, '@') . "</p>";
         }
         ?>
     </div>

@@ -7,8 +7,6 @@ $kön = $_REQUEST["kon"];
 $hjälte = $_REQUEST["hjalte"];
 $fotbollslag = $_REQUEST["fotbollslag"];
 $kommentar = $_REQUEST["kommentar"];
-
-//var_dump($_REQUEST);
 ?>
 <!DOCTYPE html>
 <html lang="sv">

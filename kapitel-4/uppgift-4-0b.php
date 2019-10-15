@@ -27,7 +27,7 @@
         if ($namn) {
             var_dump($namn);
             
-            /* Loopa igenom arrayen och skriv namnen */
+            /* Loopa igenom arrayen och skriv ut namnen */
             foreach ($namn as $namnet) {
                 echo "<p>$namnet</p>";
             }
