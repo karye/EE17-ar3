@@ -1,8 +1,14 @@
+body {
+    font-family: sans-serif;
+    background: #000;
+}
 table {
-    width: 300px;
+    width: 80%;
 }
 .kol2 {
-    width: 600px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 form {
     width: 500px;
@@ -13,14 +19,42 @@ form {
     grid-gap: 20px;
 }
 .kontainer {
-    width: 500px;
+    width: 1000px;
+    height: 80vh;
     margin: 30px auto;
     padding: 30px;
-    background: #f0f0f0;
+    background: #FFF;
     border: 1px solid #DDD;
     box-shadow: 0 0 5px #FFF;
     border-radius: 10px;
 }
 label, input {
     align-self: center;
+}
+table.month {
+    width: 400px;
+    background: #fcfcfc;
+    margin: 10px 0 20px;
+    border: 1px solid #e9e9e9;
+    padding: 10px;
+    text-align: right;
+    border-collapse: collapse;
+}
+table.month caption {
+    font-size: 12px;
+}
+table.month td {
+    border: 1px solid #e9e9e9;
+    padding: 5px 5px 10px 0;
+    font-size: 12px;
+}
+table.month th {
+    font-size: 11px;
+    padding: 10px;
+}
+table.month td.vecka {
+    background: #fafcf1;
+}
+table.month td.helg {
+    background: #fff1f1;
 }
