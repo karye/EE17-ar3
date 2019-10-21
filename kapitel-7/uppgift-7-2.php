@@ -32,18 +32,16 @@
         if ($filnamn) {
 
             /* Kontrollera filnamnet så att det endast innehåller bokstäver, siffror och punkt. */
-            if (preg_match("/[a-zåäö0-9.]+/", $filnamn, $träffar)) {
-                echo "<p>Filnamnet är korrekt!</p>";
-                var_dump($träffar);
+            if (preg_match("/[^a-zåäö0-9.]+/", $filnamn)) {
+                echo "<p>Filnamnet <strong>$filnamn</strong> är INTE korrekt!</p>";
+            } else {
+                echo "<p>Filnamnet <strong>$filnamn</strong> är korrekt!</p>";
 
                 /* Läs filen */
                 $texten = file_get_contents($filnamn);
     
                 /* Skriv ut innehållet */
-                echo "<p>$texten</p>";
-
-            } else {
-                echo "<p>Filnamnet är INTE korrekt!</p>";
+                echo "<p class=\"blå\">$texten</p>";
             }
         }
         ?>
