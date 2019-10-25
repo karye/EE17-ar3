@@ -1,0 +1,23 @@
+body {
+    font-family: sans-serif;
+    background: #c4c4c4;
+}
+.kontainer {
+    width: 1000px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #FFF;
+    border: 1px solid #DDD;
+    box-shadow: 0 0 5px #FFF;
+    border-radius: 10px;
+}
+form img {
+    width: 30px;
+}
+form label {
+    display: flex;
+    align-items:center;
+}
+form span {
+    padding: 10px;
+}
