@@ -20,7 +20,7 @@ form {
     grid-gap: 20px;
 }
 .kontainer {
-    width: 1000px;
+    width: 800px;
     margin: 30px auto;
     padding: 30px;
     background: #FFF;
@@ -46,7 +46,7 @@ table.month caption {
 }
 table td {
     border: 1px solid #e9e9e9;
-    padding: 5px 5px 10px 0;
+    padding: 5px 5px 10px 10px;
     font-size: 13px;
 }
 table.month th {
@@ -58,4 +58,7 @@ table.month td.vecka {
 }
 table.month td.helg {
     background: #fff1f1;
+}
+.fa {
+    color: cadetblue;
 }
