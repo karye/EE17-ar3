@@ -36,7 +36,7 @@ foreach ($filer as $fil) {
         /* Visa bilden om filformat ”.jpg”, ”.png”, ”.gif" */
         $info = pathinfo("./$fil");
         if ($info['extension'] == 'jpg') {
-            echo "<tr><td><i class=\"fa fa-file\"></i></td><td><img src=\"$katalog/$fil\"></td></tr>";
+            echo "<tr><td><img src=\"$katalog/$fil\"></td><td>$fil</td></tr>";
         } else {
             echo "<tr><td><i class=\"fa fa-file\"></i></td><td>$fil</td></tr>";
         }
