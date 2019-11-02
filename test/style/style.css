@@ -89,6 +89,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     border: 1px solid #ddd;
     box-shadow: 0 0 12px #f0e9d1;
+    color: #4e4e4e;
 }
 .kol2 {
     margin: 1em 0;
@@ -103,7 +104,8 @@ body {
     grid-gap: 1em;
 }
 form {
-    margin: 2em 0;
+    margin: 1em 0;
+    color: #4e4e4e;
 }
 label {
     text-align: right;
@@ -122,6 +124,7 @@ textarea {
     width: 100%;
 }
 button {
+    margin: 1em 0;
     padding: 0.7em;
     border-radius: 0.3em;
     border: none;
@@ -129,12 +132,16 @@ button {
     color: #FFF;
     background-color: #55a5d2;
 }
+h1, h2, h3 {
+    color: #9c813d;
+}
 h1, h2, h3, p {
     margin: 0.5em 0;
 }
 h3 {
     margin-top: 2em;
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -155,7 +162,7 @@ tr:nth-child(odd) {
     background: #FFF;
 }
 table .fa {
-    color: cadetblue;
+    color: #55a5d2;
 }
 table img {
     width: 50px;

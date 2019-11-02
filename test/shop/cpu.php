@@ -14,25 +14,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bygg din PC</title>
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/shop.css">
 </head>
 <body>
     <div class="kontainer">
-        <h1>Bygg din PC</h1>
+        <h1>Bygg din PC - steg 1</h1>
+        <h2>Välj cpu</h2>
         <?php
+        echo "<form action=\"./mobo.php\" method=\"post\">";
         $katalog = './shop-bilder/cpu';
-
-        echo "<form action=\"#\">";
         $filer = scandir($katalog);
         foreach ($filer as $fil) {
-            if (is_dir($fil)) {
+            if (is_dir("$katalog/$fil")) {
             } else {
-                echo "
+                $delar = pathinfo("$katalog/$fil");
+                $filtyp = $delar['extension'];
+                $filnamn = $delar['filename'];
+
+                if ($filtyp == 'jpg') {
+                    echo "
                 <label>
-                    <input class=\"with-gap\" name=\"cpu\" type=\"radio\">
-                    <img src=\"$katalog/$fil\" alt=\"$fil\">
-                    <span>$fil</span>
+                    <input class=\"with-gap\" name=\"cpu\" type=\"radio\" value=\"$filnamn\" required>
+                    <img src=\"$katalog/$fil\" alt=\"$filnamn\">
+                    <span>$filnamn</span>
                 </label>";
+                }
             }
         }
         echo "<button class=\"primary\">Nästa</button>";

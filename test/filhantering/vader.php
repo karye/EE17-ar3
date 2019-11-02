@@ -12,13 +12,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dagens väder</title>
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
     <div class="kontainer">
         <h1>Väderprognos</h1>
         <?php
-
     $url = "https://www.klart.se/se/stockholms-l%C3%A4n/v%C3%A4der-stockholm/";
 
     /* Ladda ned webbsiddan med file_get_contents */
