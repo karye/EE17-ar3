@@ -1,0 +1,1 @@
+<p>Cpu: i5-9400F</p><p>Kylare: corsair-h100i-rgb-platinum</p><p>Kylare: asus-z390-e-gaming</p><p>Kylare: msi-z390-a-pro</p><p>Cpu: i7-9700K</p><p>Kylare: cooler-master-hyper-212-evo</p>

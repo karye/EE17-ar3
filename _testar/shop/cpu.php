@@ -22,7 +22,7 @@
         <h1>Bygg din PC - steg 1</h1>
         <h2>Välj cpu</h2>
         <?php
-        echo "<form action=\"./mobo.php\" method=\"post\">";
+        echo "<form action=\"./kylare.php\" method=\"post\">";
         $katalog = './shop-bilder/cpu';
         $filer = scandir($katalog);
         foreach ($filer as $fil) {
@@ -31,13 +31,14 @@
                 $delar = pathinfo("$katalog/$fil");
                 $filtyp = $delar['extension'];
                 $filnamn = $delar['filename'];
+                $namn = str_replace('-', ' ', $filnamn);
 
                 if ($filtyp == 'jpg') {
                     echo "
                 <label>
-                    <input class=\"with-gap\" name=\"cpu\" type=\"radio\" value=\"$filnamn\" required>
+                    <input class=\"with-gap\" name=\"produkt\" type=\"radio\" value=\"$filnamn\" required>
                     <img src=\"$katalog/$fil\" alt=\"$filnamn\">
-                    <span>$filnamn</span>
+                    <span>$namn</span>
                 </label>";
                 }
             }

@@ -19,12 +19,13 @@
 </head>
 <body>
     <div class="kontainer">
-        <h1>Bygg din PC - steg 3</h1>
+        <h1>Bygg din PC - steg 2</h1>
+        <h2>Välj cpu</h2>
         <?php
         $produkt = filter_input(INPUT_POST, 'produkt', FILTER_SANITIZE_STRING);
         if ($produkt) {
             $handtag = fopen('korg.txt', 'a');
-            fwrite($handtag, "<p>Kylare: $produkt</p>");
+            fwrite($handtag, "<p>Cpu: $produkt</p>");
             fclose($handtag);
 
             $korg = file_get_contents('korg.txt');
@@ -33,7 +34,7 @@
             echo "<h2>Välj moderkort</h2>";
         }
         echo "<form action=\"./mobo.php\" method=\"post\">";
-        $katalog = './shop-bilder/mobo';
+        $katalog = './shop-bilder/kylare';
         $filer = scandir($katalog);
         foreach ($filer as $fil) {
             if (is_dir("$katalog/$fil")) {
