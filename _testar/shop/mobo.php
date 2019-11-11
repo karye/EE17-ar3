@@ -23,12 +23,12 @@
         <?php
         $produkt = filter_input(INPUT_POST, 'produkt', FILTER_SANITIZE_STRING);
         if ($produkt) {
-            $handtag = fopen('korg.txt', 'a');
+            $handtag = fopen('varukorg.txt', 'a');
             fwrite($handtag, "<p>Kylare: $produkt</p>");
             fclose($handtag);
 
-            $korg = file_get_contents('korg.txt');
-            echo "<h2>Du har valt</h2>";
+            $korg = file_get_contents('varukorg.txt');
+            echo "<h2>Varukorg</h2>";
             echo $korg;
             echo "<h2>Välj moderkort</h2>";
         }

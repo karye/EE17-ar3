@@ -1,1 +1,0 @@
-<p>Cpu: i7-9700K</p><p>Kylare: noctua-nh-d15</p><p>Kylare: msi-z390-a-pro</p>

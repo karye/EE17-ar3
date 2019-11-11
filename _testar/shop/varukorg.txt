@@ -1,0 +1,3 @@
+Cpu: amd-ryzen-5-3600-1950
+Cpu: pentium-gold-g5400-600
+<p>Kylare: be-quiet!-dark-rock-pro-4</p><p>Kylare: asrock-z390-pro4-1150</p><p>Kylare: gigabyte-z390-aorus-pro-wifi</p>

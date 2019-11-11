@@ -20,18 +20,17 @@
 <body>
     <div class="kontainer">
         <h1>Bygg din PC - steg 2</h1>
-        <h2>Välj cpu</h2>
         <?php
         $produkt = filter_input(INPUT_POST, 'produkt', FILTER_SANITIZE_STRING);
         if ($produkt) {
-            $handtag = fopen('korg.txt', 'a');
-            fwrite($handtag, "<p>Cpu: $produkt</p>");
+            $handtag = fopen('varukorg.txt', 'a');
+            fwrite($handtag, "Cpu: $produkt\n");
             fclose($handtag);
 
-            $korg = file_get_contents('korg.txt');
-            echo "<h2>Du har valt</h2>";
+            $korg = file_get_contents('varukorg.txt');
+            echo "<h2>Varukorg</h2>";
             echo $korg;
-            echo "<h2>Välj moderkort</h2>";
+            echo "<h2>Välj kylare</h2>";
         }
         echo "<form action=\"./mobo.php\" method=\"post\">";
         $katalog = './shop-bilder/kylare';
