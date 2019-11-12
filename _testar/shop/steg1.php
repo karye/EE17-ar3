@@ -19,21 +19,11 @@
 </head>
 <body>
     <div class="kontainer">
-        <h1>Bygg din PC - steg 3</h1>
+        <h1>Bygg din PC - steg 1</h1>
+        <h2>Välj cpu</h2>
         <?php
-        $produkt = filter_input(INPUT_POST, 'produkt', FILTER_SANITIZE_STRING);
-        if ($produkt) {
-            $handtag = fopen('varukorg.txt', 'a');
-            fwrite($handtag, "<p>Kylare: $produkt</p>");
-            fclose($handtag);
-
-            $korg = file_get_contents('varukorg.txt');
-            echo "<h2>Varukorg</h2>";
-            echo $korg;
-            echo "<h2>Välj moderkort</h2>";
-        }
-        echo "<form action=\"./mobo.php\" method=\"post\">";
-        $katalog = './shop-bilder/mobo';
+        echo "<form action=\"./steg2.php\" method=\"post\">";
+        $katalog = './shop-bilder/cpu';
         $filer = scandir($katalog);
         foreach ($filer as $fil) {
             if (is_dir("$katalog/$fil")) {
@@ -46,7 +36,7 @@
                 if ($filtyp == 'jpg') {
                     echo "
                 <label>
-                    <input class=\"with-gap\" name=\"produkt\" type=\"radio\" value=\"$filnamn\" required>
+                    <input class=\"with-gap\" name=\"vara\" type=\"radio\" value=\"$filnamn\" required>
                     <img src=\"$katalog/$fil\" alt=\"$filnamn\">
                     <span>$namn</span>
                 </label>";
