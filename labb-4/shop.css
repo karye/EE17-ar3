@@ -58,7 +58,7 @@ textarea {
     height: 5em;
     width: 100%;
 }
-button {
+button, .knapp {
     margin: 1em 0;
     padding: 0.7em;
     border-radius: 0.3em;
@@ -66,6 +66,8 @@ button {
     font-weight: bold;
     color: #FFF;
     background-color: #55a5d2;
+    text-decoration: none;
+    font-size: 14px;
 }
 h1, h2, h3 {
     color: #9c813d;
@@ -102,6 +104,12 @@ table .fa {
 table img {
     width: 50px;
 }
+table tfoot td {
+    background: #b4a975;
+    color: #FFF;
+    font-weight: bold;
+}
+
 form img {
     width: 30px;
 }

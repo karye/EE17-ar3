@@ -1,12 +1,12 @@
 <?php
 /*
-* Data från https://pcpartpicker.com/products/cpu/
-* 
-* PHP version 7
-* @category   Webbshop
-* @author     Karim Ryde <karye.webb@gmail.com>
-* @license    PHP CC
-*/
+ * Data från https://pcpartpicker.com/products/cpu/
+ *
+ * PHP version 7
+ * @category   Webbshop
+ * @author     Karim Ryde <karye.webb@gmail.com>
+ * @license    PHP CC
+ */
 
 include_once "./funktioner.inc.php";
 ?>
@@ -21,6 +21,29 @@ include_once "./funktioner.inc.php";
 <body>
     <div class="kontainer">
         <h1>Bygg din PC - steg 8</h1>
+        <h2>Välj chassi</h2>
+        <form action="varukorg.php" method="post">
+            <?php
+            /* Lista alla produkter i katalogen */
+            $katalog = "./shop-bilder/chassi";
+
+            /* Hämta katalogens innehåll */
+            $filer = scandir($katalog);
+            foreach ($filer as $fil) {
+                $info = pathinfo("./$fil");
+                if ($info['extension'] == 'jpg' || $info['extension'] == 'png' || $info['extension'] == 'webp') {
+                    echo "<label>";
+                    echo "<input type=\"radio\" name=\"vara\" value=\"$fil\" required>";
+                    echo "<img src=\"$katalog/$fil\">";
+                    $vara = vara($fil);
+                    $pris = pris($fil);
+                    echo "$vara $pris:-";
+                    echo "</label>";
+                }
+            }
+            ?>
+        <button>Avsluta</button>
+        </form>
         <h2>Varukorg</h2>
         <?php
         /* Visa innehållet på varukorgen = varukorg.txt */
@@ -38,43 +61,30 @@ include_once "./funktioner.inc.php";
         if (is_readable($varukorg)) {
             /* Läs in textfilen varukorg.txt i en array */
             $rader = file($varukorg);
+            $total = 0;
 
             /* Skriv ut som tabell */
             echo "<table>";
+            echo "<thead>";
             echo "<tr><th>Vara</th><th>Pris</th></tr>";
+            echo "</thead>";
+            echo "<tbody>";
             foreach ($rader as $rad) {
                 $vara = vara($rad);
                 $pris = pris($rad);
-                echo "<tr><td>$vara</td><td>$pris</td></tr>";
+                $total = $total + $pris;
+                echo "<tr><td>$vara</td><td>$pris:-</td></tr>";
             }
-            echo "</table>";
+            echo "</tbody>";
+            echo "<tfoot>";
+            echo "<tr><td>Total</td><td>$total:-</td></tr>";
+            echo "</tfoot>";
+            echo "</table>";  
         } else {
             echo "<p>Varukorgen saknas!</p>";
         }
         ?>
-        <h2>Välj interminne</h2>
-        <form action="varukorg.php" method="post">
-        <?php
-        /* Lista alla produkter i katalogen */
-        $katalog = "./shop-bilder/chassi";
-
-        /* Hämta katalogens innehåll */
-        $filer = scandir($katalog);
-        foreach ($filer as $fil) {
-            $info = pathinfo("./$fil");
-            if ($info['extension'] == 'jpg' || $info['extension'] == 'png' || $info['extension'] == 'webp') {
-                echo "<label>";
-                echo "<input type=\"radio\" name=\"vara\" value=\"$fil\">";
-                echo "<img src=\"$katalog/$fil\">";
-                $vara = vara($fil);
-$pris = pris($fil);
-echo "$vara $pris:-";
-                echo "</label>";
-            }
-        }
-        ?>
-        <button>Nästa</button>
-        </form>
+        <a class="knapp" href="./steg1.php">Börja om!</a>
     </div>
 </body>
 </html>

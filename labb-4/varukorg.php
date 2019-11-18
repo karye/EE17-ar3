@@ -38,20 +38,30 @@ include_once "./funktioner.inc.php";
         if (is_readable($varukorg)) {
             /* Läs in textfilen varukorg.txt i en array */
             $rader = file($varukorg);
+            $total = 0;
 
             /* Skriv ut som tabell */
             echo "<table>";
+            echo "<thead>";
             echo "<tr><th>Vara</th><th>Pris</th></tr>";
+            echo "</thead>";
+            echo "<tbody>";
             foreach ($rader as $rad) {
                 $vara = vara($rad);
                 $pris = pris($rad);
-                echo "<tr><td>$vara</td><td>$pris</td></tr>";
+                $total = $total + $pris;
+                echo "<tr><td>$vara</td><td>$pris:-</td></tr>";
             }
-            echo "</table>";
+            echo "</tbody>";
+            echo "<tfoot>";
+            echo "<tr><td>Total</td><td>$total:-</td></tr>";
+            echo "</tfoot>";
+            echo "</table>";  
         } else {
             echo "<p>Varukorgen saknas!</p>";
         }
         ?>
+        <a class="knapp" href="./steg1.php">Börja om!</a>
     </div>
 </body>
 </html>

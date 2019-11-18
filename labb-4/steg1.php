@@ -33,7 +33,7 @@ include_once "./funktioner.inc.php";
             $info = pathinfo("./$fil");
             if ($info['extension'] == 'jpg' || $info['extension'] == 'png' || $info['extension'] == 'webp') {
                 echo "<label>";
-                echo "<input type=\"radio\" name=\"vara\" value=\"$fil\">";
+                echo "<input type=\"radio\" name=\"vara\" value=\"$fil\" required>";
                 echo "<img src=\"$katalog/$fil\">";
                 $vara = vara($fil);
                 $pris = pris($fil);
@@ -42,7 +42,7 @@ include_once "./funktioner.inc.php";
             }
         }
         ?>
-        <button>Nästa</button>
+        <button>Gå till steg 2</button>
         </form>
     </div>
 </body>
