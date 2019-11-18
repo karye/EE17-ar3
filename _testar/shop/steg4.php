@@ -20,29 +20,29 @@ include_once "./funktioner.inc.php";
 </head>
 <body>
     <div class="kontainer">
-        <h1>Bygg din PC - steg 2</h1>
-        <h2>Välj kylare</h2>
-        <form action="./steg3.php" method="post">
-            <?php
-            /* Lista alla produkter i katalogen */
-            $katalog = "../../labb-4/shop-bilder/kylare";
+        <h1>Bygg din PC - steg 4</h1>
+        <h2>Välj interminne</h2>
+        <form action="steg5.php" method="post">
+        <?php
+        /* Lista alla produkter i katalogen */
+        $katalog = "../../labb-4/shop-bilder/ram";
 
-            /* Hämta katalogens innehåll */
-            $filer = scandir($katalog);
-            foreach ($filer as $fil) {
-                $info = pathinfo("./$fil");
-                if ($info['extension'] == 'jpg' || $info['extension'] == 'png' || $info['extension'] == 'webp') {
-                    echo "<label>";
-                    echo "<input type=\"radio\" name=\"vara\" value=\"$fil\" required>";
-                    echo "<img src=\"$katalog/$fil\">";
-                    $vara = vara($fil);
-                    $pris = pris($fil);
-                    echo "$vara $pris:-";
-                    echo "</label>";
-                }
+        /* Hämta katalogens innehåll */
+        $filer = scandir($katalog);
+        foreach ($filer as $fil) {
+            $info = pathinfo("./$fil");
+            if ($info['extension'] == 'jpg' || $info['extension'] == 'png' || $info['extension'] == 'webp') {
+                echo "<label>";
+                echo "<input type=\"radio\" name=\"vara\" value=\"$fil\" required>";
+                echo "<img src=\"$katalog/$fil\">";
+                $vara = vara($fil);
+                $pris = pris($fil);
+                echo "$vara $pris:-";
+                echo "</label>";
             }
-            ?>
-            <button>Gå till steg 3</button>
+        }
+        ?>
+        <button>Gå till steg 5</button>
         </form>
         <h2>Varukorg</h2>
         <?php
@@ -60,7 +60,7 @@ include_once "./funktioner.inc.php";
                 /* Kolla att vara inte redan finns i varukorgen */
                 if ($pos === false) {
                     /* Spara ned i varukorg.txt */
-                    $handtag = fopen($varukorg, 'w');
+                    $handtag = fopen($varukorg, 'a');
                     fwrite($handtag, "$vara\n");
                     fclose($handtag);
                 }
@@ -88,7 +88,7 @@ include_once "./funktioner.inc.php";
             echo "<tfoot>";
             echo "<tr><td>Total</td><td>$total:-</td></tr>";
             echo "</tfoot>";
-            echo "</table>";  
+            echo "</table>";    
         } else {
             echo "<p>Varukorgen saknas!</p>";
         }

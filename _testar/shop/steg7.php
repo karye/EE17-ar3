@@ -1,12 +1,12 @@
 <?php
 /*
-* Data från https://pcpartpicker.com/products/cpu/
-* 
-* PHP version 7
-* @category   Webbshop
-* @author     Karim Ryde <karye.webb@gmail.com>
-* @license    PHP CC
-*/
+ * Data från https://pcpartpicker.com/products/cpu/
+ *
+ * PHP version 7
+ * @category   Webbshop
+ * @author     Karim Ryde <karye.webb@gmail.com>
+ * @license    PHP CC
+ */
 
 include_once "./funktioner.inc.php";
 ?>
@@ -20,12 +20,12 @@ include_once "./funktioner.inc.php";
 </head>
 <body>
     <div class="kontainer">
-        <h1>Bygg din PC - steg 2</h1>
-        <h2>Välj kylare</h2>
-        <form action="./steg3.php" method="post">
+        <h1>Bygg din PC - steg 7</h1>
+        <h2>Välj nätaggregat</h2>
+        <form action="steg8.php" method="post">
             <?php
             /* Lista alla produkter i katalogen */
-            $katalog = "../../labb-4/shop-bilder/kylare";
+            $katalog = "../../labb-4/shop-bilder/psu";
 
             /* Hämta katalogens innehåll */
             $filer = scandir($katalog);
@@ -42,7 +42,7 @@ include_once "./funktioner.inc.php";
                 }
             }
             ?>
-            <button>Gå till steg 3</button>
+            <button>Gå till steg 8</button>
         </form>
         <h2>Varukorg</h2>
         <?php
@@ -60,7 +60,7 @@ include_once "./funktioner.inc.php";
                 /* Kolla att vara inte redan finns i varukorgen */
                 if ($pos === false) {
                     /* Spara ned i varukorg.txt */
-                    $handtag = fopen($varukorg, 'w');
+                    $handtag = fopen($varukorg, 'a');
                     fwrite($handtag, "$vara\n");
                     fclose($handtag);
                 }

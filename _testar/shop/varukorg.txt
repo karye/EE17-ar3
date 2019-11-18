@@ -1,3 +1,8 @@
-Cpu: amd-ryzen-5-3600-1950
-Cpu: pentium-gold-g5400-600
-<p>Kylare: be-quiet!-dark-rock-pro-4</p><p>Kylare: asrock-z390-pro4-1150</p><p>Kylare: gigabyte-z390-aorus-pro-wifi</p>
+i5-9600K-2200.jpg
+nzxt-kraken-m22-800.jpg
+msi-z390-a-pro-1260.jpg
+patriot-viper-4-8-gb-630.jpg
+MX-500-1TB-SSD-2.5in-SATA3-1075.png
+sapphire-pulse-rx-580-1749.jpg
+corsair-hx1000i-1900.jpg
+transparent-core-p5-glass-svart-2899.jpg

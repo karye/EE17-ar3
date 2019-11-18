@@ -15,43 +15,22 @@ include_once "./funktioner.inc.php";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Webbshop - steg 1 - cpu</title>
+    <title>Webbshop</title>
     <link rel="stylesheet" href="./shop.css">
 </head>
 <body>
     <div class="kontainer">
-        <h1>Bygg din PC - steg 2</h1>
-        <h2>Välj kylare</h2>
-        <form action="./steg3.php" method="post">
-            <?php
-            /* Lista alla produkter i katalogen */
-            $katalog = "../../labb-4/shop-bilder/kylare";
-
-            /* Hämta katalogens innehåll */
-            $filer = scandir($katalog);
-            foreach ($filer as $fil) {
-                $info = pathinfo("./$fil");
-                if ($info['extension'] == 'jpg' || $info['extension'] == 'png' || $info['extension'] == 'webp') {
-                    echo "<label>";
-                    echo "<input type=\"radio\" name=\"vara\" value=\"$fil\" required>";
-                    echo "<img src=\"$katalog/$fil\">";
-                    $vara = vara($fil);
-                    $pris = pris($fil);
-                    echo "$vara $pris:-";
-                    echo "</label>";
-                }
-            }
-            ?>
-            <button>Gå till steg 3</button>
-        </form>
+        <h1>Bygg din PC</h1>
         <h2>Varukorg</h2>
         <?php
         /* Visa innehållet på varukorgen = varukorg.txt */
         $varukorg = "./varukorg.txt";
+        $dator = ["CPU", "Moderkort", "Kylare", "RAM", "Disk", "Grafikkort", "PSU", "Chassi"];
 
         /* Ta emot data som skickas */
         $vara = filter_input(INPUT_POST, 'vara', FILTER_SANITIZE_STRING);
         if ($vara) {
+
             /* Kolla att varukorgfilen går att läsa */
             if (is_readable($varukorg)) {
                 $varukorgTexten = file_get_contents($varukorg);
@@ -60,13 +39,14 @@ include_once "./funktioner.inc.php";
                 /* Kolla att vara inte redan finns i varukorgen */
                 if ($pos === false) {
                     /* Spara ned i varukorg.txt */
-                    $handtag = fopen($varukorg, 'w');
+                    $handtag = fopen($varukorg, 'a');
                     fwrite($handtag, "$vara\n");
                     fclose($handtag);
                 }
             }
         }
 
+        /* Kolla att varukorgfilen går att läsa */
         if (is_readable($varukorg)) {
             /* Läs in textfilen varukorg.txt i en array */
             $rader = file($varukorg);
@@ -75,18 +55,23 @@ include_once "./funktioner.inc.php";
             /* Skriv ut som tabell */
             echo "<table>";
             echo "<thead>";
-            echo "<tr><th>Vara</th><th>Pris</th></tr>";
+            echo "<tr><th>Vara</th><th>Antal</th><th>Pris</th><th>Summa</th></tr>";
             echo "</thead>";
             echo "<tbody>";
-            foreach ($rader as $rad) {
+            foreach ($rader as $index => $rad) {
                 $vara = vara($rad);
                 $pris = pris($rad);
                 $total = $total + $pris;
-                echo "<tr><td>$vara</td><td>$pris:-</td></tr>";
+                echo "<tr>";
+                echo "<td><strong>{$dator[$index]}</strong> $vara</td>";
+                echo "<td><button id=\"minus\">-</button> <span id=\"antal\">1</span> <button id=\"plus\">+</button></td>";
+                echo "<td id=\"pris\">$pris:-</td>";
+                echo "<td id=\"summa\">$pris:-</td>";
+                echo "</tr>";
             }
             echo "</tbody>";
             echo "<tfoot>";
-            echo "<tr><td>Total</td><td>$total:-</td></tr>";
+            echo "<tr><td>Total</td><td></td><td></td><td id=\"total\">$total:-</td></tr>";
             echo "</tfoot>";
             echo "</table>";  
         } else {
@@ -95,5 +80,6 @@ include_once "./funktioner.inc.php";
         ?>
         <a class="knapp" href="./steg1.php">Börja om!</a>
     </div>
+    <script src="varukorg.js"></script>
 </body>
 </html>

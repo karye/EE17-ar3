@@ -1,51 +1,49 @@
 <?php
 /*
 * Data från https://pcpartpicker.com/products/cpu/
-*
+* 
 * PHP version 7
-* @category   Lånekalkylator
+* @category   Webbshop
 * @author     Karim Ryde <karye.webb@gmail.com>
 * @license    PHP CC
 */
+
+include_once "./funktioner.inc.php";
 ?>
 <!DOCTYPE html>
 <html lang="sv">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bygg din PC</title>
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/shop.css">
+    <title>Webbshop - steg 1 - cpu</title>
+    <link rel="stylesheet" href="./shop.css">
 </head>
 <body>
     <div class="kontainer">
         <h1>Bygg din PC - steg 1</h1>
-        <h2>Välj cpu</h2>
+        <h2>Välj CPU</h2>
+        <form action="./steg2.php" method="post">
         <?php
-        echo "<form action=\"./steg2.php\" method=\"post\">";
-        $katalog = './shop-bilder/cpu';
+        /* Lista alla produkter i katalogen */
+        $katalog = "../../labb-4/shop-bilder/cpu";
+
+        /* Hämta katalogens innehåll */
         $filer = scandir($katalog);
         foreach ($filer as $fil) {
-            if (is_dir("$katalog/$fil")) {
-            } else {
-                $delar = pathinfo("$katalog/$fil");
-                $filtyp = $delar['extension'];
-                $filnamn = $delar['filename'];
-                $namn = str_replace('-', ' ', $filnamn);
-
-                if ($filtyp == 'jpg') {
-                    echo "
-                <label>
-                    <input class=\"with-gap\" name=\"vara\" type=\"radio\" value=\"$filnamn\" required>
-                    <img src=\"$katalog/$fil\" alt=\"$filnamn\">
-                    <span>$namn</span>
-                </label>";
-                }
+            $info = pathinfo("./$fil");
+            if ($info['extension'] == 'jpg' || $info['extension'] == 'png' || $info['extension'] == 'webp') {
+                echo "<label>";
+                echo "<input type=\"radio\" name=\"vara\" value=\"$fil\" required>";
+                echo "<img src=\"$katalog/$fil\">";
+                $vara = vara($fil);
+                $pris = pris($fil);
+                echo "$vara $pris:-";
+                echo "</label>";
             }
         }
-        echo "<button class=\"primary\">Nästa</button>";
-        echo "</form>";
         ?>
+        <button>Gå till steg 2</button>
+        </form>
     </div>
 </body>
 </html>
