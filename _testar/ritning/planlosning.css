@@ -1,0 +1,14 @@
+body {
+    font-family: sans-serif;
+}
+label {
+    font-weight: bold;
+}
+.wrapper {
+    display: grid;
+}
+.on {
+    fill: pink;
+    stroke: red;
+    stroke-width: 2;
+}

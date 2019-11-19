@@ -1,0 +1,158 @@
+body {
+    overflow: hidden;
+}
+&#xa;
+div.picker {
+    z-index: 10007;
+}
+&#xa;
+.geSidebarContainer .geTitle input {
+    &#xa;
+    font-size: 8pt;
+    &#xa;
+    color: #606060;
+    &#xa;
+}
+&#xa;
+.geBlock {
+    &#xa;
+    z-index: -3;
+    &#xa;
+    margin: 100px;
+    &#xa;
+    margin-top: 40px;
+    &#xa;
+    margin-bottom: 30px;
+    &#xa;
+    padding: 20px;
+    &#xa;
+}
+&#xa;
+.geBlock h1, .geBlock h2 {
+    &#xa;
+    margin-top: 0px;
+    &#xa;
+    padding-top: 0px;
+    &#xa;
+}
+&#xa;
+.geEditor ::-webkit-scrollbar {
+    &#xa;
+    width: 14px;
+    &#xa;
+    height: 14px;
+    &#xa;
+}
+&#xa;
+.geEditor ::-webkit-scrollbar-track {
+    &#xa;
+    background-clip: padding-box;
+    &#xa;
+    border: solid transparent;
+    &#xa;
+    border-width: 1px;
+    &#xa;
+}
+&#xa;
+.geEditor ::-webkit-scrollbar-corner {
+    &#xa;
+    background-color: transparent;
+    &#xa;
+}
+&#xa;
+.geEditor ::-webkit-scrollbar-thumb {
+    &#xa;
+    background-color: rgba(0, 0, 0, .1);
+    &#xa;
+    background-clip: padding-box;
+    &#xa;
+    border: solid transparent;
+    &#xa;
+    border-radius: 10px;
+    &#xa;
+}
+&#xa;
+.geEditor ::-webkit-scrollbar-thumb:hover {
+    &#xa;
+    background-color: rgba(0, 0, 0, .4);
+    &#xa;
+}
+&#xa;
+.geTemplate {
+    &#xa;
+    border: 1px solid transparent;
+    &#xa;
+    display: inline-block;
+    &#xa;
+    _display: inline;
+    &#xa;
+    vertical-align: top;
+    &#xa;
+    border-radius: 3px;
+    &#xa;
+    overflow: hidden;
+    &#xa;
+    font-size: 14pt;
+    &#xa;
+    cursor: pointer;
+    &#xa;
+    margin: 5px;
+    &#xa;
+}
+&#xa;
+.geFooterContainer div.geSocialFooter a {
+    &#xa;
+    display: inline;
+    &#xa;
+    padding: 0px;
+    &#xa;
+}
+&#xa;
+.geFooterContainer div.geSocialFooter a img {
+    &#xa;
+    margin-top: 10px;
+    &#xa;
+    opacity: 0.5;
+    &#xa;
+}
+&#xa;
+.geFooterContainer div.geSocialFooter a img:hover {
+    &#xa;
+    opacity: 1;
+    &#xa;
+}
+&#xa;
+.geFooterContainer&gt;
+div#geFooter&gt;
+img {
+    &#xa;
+    opacity: 0.5;
+    &#xa;
+    border: 1px solid transparent;
+    &#xa;
+    cursor: pointer;
+    &#xa;
+    margin-top: 3px;
+    &#xa;
+    margin-right: 6px;
+    &#xa;
+    position: absolute;
+    &#xa;
+    right: 4px;
+    &#xa;
+    top: 12px;
+    &#xa;
+    padding: 1px;
+    &#xa;
+    cursor: pointer;
+    &#xa;
+}
+&#xa;
+.geFooterContainer&gt;
+div#geFooter&gt;
+img:hover {
+    &#xa;
+    opacity: 1;
+    &#xa;
+}
+&#xa;

@@ -7,21 +7,14 @@
 */
 ?>
 <?php
+/* Använder regex för att plocka ut vara och pris
+   Se https://www.phpliveregex.com/p/uci */
 function vara($bilden) {
-    preg_match("/-[0-9]*.\w*$/", $bilden, $match);
-    $längd = strlen($match[0]) + 1;
-    
-    /* Plocka ut del före punkten */
-    $vara = substr($bilden, 0, -$längd);
-
-    return $vara;
+    preg_match("/(.*)-([0-9]*).\w*$/", $bilden, $match);
+    return $match[1];
 }
 function pris($bilden) {
-    preg_match("/[0-9]*.\w*$/", $bilden, $match);
-    
-    /* Plocka ut del före punkten */
-    $delar = explode('.', $match[0]);
-
-    return $delar[0];
+    preg_match("/(.*)-([0-9]*).\w*$/", $bilden, $match);
+    return $match[2];
 }
 ?>

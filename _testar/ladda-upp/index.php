@@ -20,12 +20,6 @@
 <body>
     <div class="kontainer">
         <h1>Ladda upp filer</h1>
-        <?php
-        $uploadsuccess = filter_input(INPUT_GET, 'uploadsuccess', FILTER_SANITIZE_STRING);
-        if ($uploadsuccess) {
-            echo "<p>Filen har laddats upp!</p>";
-        }
-        ?>
         <form action="upload.php" method="POST" enctype="multipart/form-data">
             <label>Filnamn</label>
             <input type="file" name="file" required>
