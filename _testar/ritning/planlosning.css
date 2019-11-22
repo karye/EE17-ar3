@@ -12,3 +12,6 @@ label {
     stroke: red;
     stroke-width: 2;
 }
+text {
+    user-select: none;
+}
