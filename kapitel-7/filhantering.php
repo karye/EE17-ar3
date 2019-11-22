@@ -32,12 +32,12 @@
     fclose($handtag);
 
     /* Enklare sätt att läsa in en fil */
-    /* 1. file_get_content() */
+    /* 1. file_get_content() läser allt i en sträng */
     $filnamn = "sang.txt";
     $texten = file_get_contents($filnamn);
     echo "<p>$texten</p>";
 
-    /* 2. file() */
+    /* 2. file() läser in i en array */
     $filnamn = "sang.txt";
     $rader = file($filnamn);
     foreach ($rader as $rad) {
