@@ -34,9 +34,9 @@ include_once "./funktioner.inc.php";
             /* Kolla att varukorgfilen går att läsa */
             if (is_readable($varukorg)) {
                 $varukorgTexten = file_get_contents($varukorg);
-                $pos = strpos($varukorgTexten, $vara);
 
                 /* Kolla att vara inte redan finns i varukorgen */
+                $pos = strpos($varukorgTexten, $vara);
                 if ($pos === false) {
                     /* Spara ned i varukorg.txt */
                     $handtag = fopen($varukorg, 'a');

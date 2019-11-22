@@ -102,6 +102,12 @@ table .fa {
 table img {
     width: 50px;
 }
+table .grön {
+    background: #aeffae;
+}
+table .röd {
+    background: #ffa6a6;
+}
 form img {
     width: 30px;
 }

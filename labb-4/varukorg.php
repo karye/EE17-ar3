@@ -29,10 +29,16 @@ include_once "./funktioner.inc.php";
         /* Ta emot data som skickas */
         $vara = filter_input(INPUT_POST, 'vara', FILTER_SANITIZE_STRING);
         if ($vara) {
-            /* Spara ned i varukorg.txt */
-            $handtag = fopen($varukorg, 'a');
-            fwrite($handtag, "$vara\n");
-            fclose($handtag);
+            $varukorgText = file_get_contents("$varukorg");
+
+            /* Kolla om varan inte redan finns redan  */
+            $pos = strpos($varukorgText, $vara);
+            if ($pos === false) {
+                /* Spara ned i varukorg.txt */
+                $handtag = fopen($varukorg, 'a');
+                fwrite($handtag, "$vara\n");
+                fclose($handtag);
+            }
         }
 
         if (is_readable($varukorg)) {
@@ -43,18 +49,33 @@ include_once "./funktioner.inc.php";
             /* Skriv ut som tabell */
             echo "<table>";
             echo "<thead>";
-            echo "<tr><th>Vara</th><th>Pris</th></tr>";
+            echo "<tr>
+                <th>Vara</th>
+                <th>Antal</th>
+                <th>Pris</th>
+                <th>Summa</th>
+                </tr>";
             echo "</thead>";
             echo "<tbody>";
             foreach ($rader as $rad) {
                 $vara = vara($rad);
                 $pris = pris($rad);
                 $total = $total + $pris;
-                echo "<tr><td>$vara</td><td>$pris:-</td></tr>";
+                echo "<tr>
+                    <td>$vara</td>
+                    <td><button id=\"minus\">-</button> <span id=\"antal\">1</span> <button id=\"plus\">+</button></td>
+                    <td id=\"pris\">$pris:-</td>
+                    <td id=\"summa\">$pris:-</td>
+                    </tr>";
             }
             echo "</tbody>";
             echo "<tfoot>";
-            echo "<tr><td>Total</td><td>$total:-</td></tr>";
+            echo "<tr>
+                <td>Total</td>
+                <td></td>
+                <td></td>
+                <td id=\"total\">$total:-</td>
+                </tr>";
             echo "</tfoot>";
             echo "</table>";  
         } else {
@@ -63,5 +84,6 @@ include_once "./funktioner.inc.php";
         ?>
         <a class="knapp" href="./steg1.php">Börja om!</a>
     </div>
+    <script src="./shop.js"></script>
 </body>
 </html>

@@ -38,10 +38,24 @@
                 $bokbar = $delar[3]; // Dvs 1
 
                 /* Plocka ut salsnr och salsnamn */
-                if (strstr($salNrNamn, "/")) {
-                    $delar = explode("/", $salNrNamn);
-                    $salNr = $delar[0]; // Dvs "410"
-                    $salNamn = $delar[1]; // Dvs "Dali"
+                if ((strstr($salNrNamn, "/") || $salNrNamn == "430" || $salNrNamn == "522" || substr($salNrNamn, 0, 1) == "A" || $salNrNamn == "Biblioteket" || $salNrNamn == "Dr Kristinas sal") && $salNrNamn != "APL" && $salNrNamn != "Annan plats") {
+
+                    /* Om Salsnr innehåller "/" */
+                    if (strstr($salNrNamn, "/")) {
+                        $delar = explode("/", $salNrNamn);
+                        $salNr = $delar[0]; // Dvs "410"
+                        $salNamn = $delar[1]; // Dvs "Dali"
+                    } else {
+                        $salNr = $delar[1]; // Dvs "A1"
+                        $salNamn = ""; 
+                    }
+
+                    /* Plocka ut salsnr och salsnamn för Annexet */
+                    if (strstr($salNrNamn, "(")) { // Dvs "A1 (Mattesal)"
+                        $delar = explode(" (", $salNrNamn);
+                        $salNr = $delar[0];
+                        $salNamn = substr($delar[1], 0, -1); // Ta bort sista parantesen
+                    }
 
                     /* Om salNr har ett bindestreck, dela upp igen */
                     if (strstr($salNr, "-")) { // Dvs 506-grupprum
@@ -52,9 +66,11 @@
                         $salTyp = "sal";
                     }
                     
-                    echo "<tr><td>$salNr</td><td>$salNamn</td><td>$salTyp</td><td>$bokbar</td></tr>";
-                } else {
-                    
+                    if ($bokbar == "1") {
+                        echo "<tr><td>$salNr</td><td>$salNamn</td><td>$salTyp</td><td class=\"grön\"></td></tr>";
+                    } else {
+                        echo "<tr><td>$salNr</td><td>$salNamn</td><td>$salTyp</td><td class=\"röd\"></td></tr>";
+                    }
                 }
             }
             echo "</table>";
