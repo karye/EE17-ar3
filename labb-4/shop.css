@@ -13,13 +13,15 @@ body, h1, h2, h3, h4, h5, h6, p, ul {
 }
 
 body {
-    background: #F9F6EB;
+    background: #F9F6EB url("./bilder/photo-1568209865332-a15790aed756.jpg");
+    background-size: cover;
+    background-attachment: fixed;
 }
 .kontainer {
-    width: 600px;
-    padding: 2em;
+    width: 700px;
+    padding: 3em;
     margin: 3em auto;
-    background: #fff;
+    background: #ffffffe1;
     border-radius: 5px;
     font-family: 'Source Sans Pro', sans-serif;
     border: 1px solid #ddd;
@@ -68,6 +70,12 @@ button, .knapp {
     background-color: #55a5d2;
     text-decoration: none;
     font-size: 14px;
+    cursor: pointer;
+}
+table button {
+    padding: 0;
+    margin: 0;
+    width: 1em;
 }
 h1, h2, h3 {
     color: #9c813d;
