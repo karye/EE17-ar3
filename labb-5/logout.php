@@ -26,25 +26,15 @@ if (!$_SESSION['login']) {
         <h1>Bloggen</h1>
         <nav>
             <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link active" href="./lasa.php">Läsa</a></li>
+                <li class="nav-item"><a class="nav-link" href="./lasa.php">Läsa</a></li>
                 <li class="nav-item"><a class="nav-link" href="./skriva.php">Skriva</a></li>
-                <?php if (!$_SESSION['login']) { ?>
-                    <li class="nav-item"><a class="nav-link" href="./login.php">Logga in</a></li>
-                <?php } else { ?>
-                    <li class="nav-item"><a class="nav-link" href="./logout.php">Logga ut</a></li>
-                <?php } ?>
+                <li class="nav-item"><a class="nav-link" href="./login.php">Logga in</a></li>
             </ul>
         </nav>
-        <main>
-            <?php
-            /* Öppna textfilen och läsa innehållet och skriv ut det. */
-            $allaRader = file("inlaggen.txt");
-
-            foreach ($allaRader as $rad) {
-                echo $rad . "<br>";
-            }
-            ?>
-        </main>
+        <?php
+        $_SESSION['login'] = false;
+        echo "<p class=\"alert alert-success\">Nu är du utloggad!</p>";
+        ?>
     </div>
 </body>
 </html>
