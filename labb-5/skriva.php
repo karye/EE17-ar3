@@ -25,9 +25,9 @@ if (!$_SESSION['login']) {
 </head>
 <body>
     <div class="kontainer">
-        <h1>Bloggen</h1>
+        <h1  class="display-4">Bloggen</h1>
         <nav>
-            <ul class="nav nav-pills">
+            <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link" href="./lasa.php">Läsa</a></li>
                 <li class="nav-item"><a class="nav-link active" href="./skriva.php">Skriva</a></li>
                 <?php if (!$_SESSION['login']) { ?>

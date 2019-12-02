@@ -33,9 +33,9 @@ if (!$_SESSION['login']) {
     }
 ?>
     <div class="kontainer">
-        <h1>Bloggen</h1>
+        <h1  class="display-4">Bloggen</h1>
         <nav>
-            <ul class="nav nav-pills">
+            <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link" href="./lasa.php">Läsa</a></li>
                 <li class="nav-item"><a class="nav-link" href="./skriva.php">Skriva</a></li>
                 <?php if (!$_SESSION['login']) { ?>
@@ -52,8 +52,8 @@ if (!$_SESSION['login']) {
                 echo "<p class=\"alert alert-info\">För att skriva ett inlägg måste du logga in först!</p>";
             }
         ?>
-        <form action="#" method="POST">
-            <h2>Logga in</h2>
+        <h3>Logga in</h3>
+        <form class="kol2" action="#" method="POST">
             <label>Användarnamn</label>
             <input type="text" name="anamn" placeholder="Tex erik12" required>
             <label>Lösenord</label>
