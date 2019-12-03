@@ -6,10 +6,10 @@
 * @license    PHP CC
 */
 session_start();
+
 /* Är användaren inte inloggad? */
-if (!$_SESSION['login']) {
+if (!isset($_SESSION['login'])) {
     /* Nej, gå till loginsidan */
-    $_SESSION['login'] = false;
 }
 ?>
 <!DOCTYPE html>
@@ -38,7 +38,7 @@ if (!$_SESSION['login']) {
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link" href="./lasa.php">Läsa</a></li>
                 <li class="nav-item"><a class="nav-link" href="./skriva.php">Skriva</a></li>
-                <?php if (!$_SESSION['login']) { ?>
+                <?php if (!isset($_SESSION['login'])) { ?>
                     <li class="nav-item"><a class="nav-link active" href="./login.php">Logga in</a></li>
                 <?php } else { ?>
                     <li class="nav-item"><a class="nav-link active" href="./logout.php">Logga ut</a></li>
@@ -52,7 +52,6 @@ if (!$_SESSION['login']) {
                 echo "<p class=\"alert alert-info\">För att skriva ett inlägg måste du logga in först!</p>";
             }
         ?>
-        <h3>Logga in</h3>
         <form class="kol2" action="#" method="POST">
             <label>Användarnamn</label>
             <input type="text" name="anamn" placeholder="Tex erik12" required>
@@ -62,7 +61,7 @@ if (!$_SESSION['login']) {
         </form>
         <?php
         /* Skriv ut meddelandem */
-        if ($_SESSION['login']) {
+        if (isset($_SESSION['login'])) {
             echo "<p class=\"alert alert-success\">Du är inloggad!</p>";
         } else {
             echo "<p class=\"alert alert-warning\">Fel användarnamn eller lösenord. Vg försök igen!</p>";

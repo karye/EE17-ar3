@@ -10,7 +10,7 @@ session_start();
 var_dump($_SESSION['login']);
 
 /* Är användaren inte inloggad? */
-if (!$_SESSION['login']) {
+if (!isset($_SESSION['login'])) {
     /* Nej, gå till loginsidan */
     header("Location: ./login.php?fran=skriva");
 }

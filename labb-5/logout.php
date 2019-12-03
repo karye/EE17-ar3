@@ -6,10 +6,10 @@
 * @license    PHP CC
 */
 session_start();
+
 /* Är användaren inte inloggad? */
-if (!$_SESSION['login']) {
+if (!isset($_SESSION['login'])) {
     /* Nej, gå till loginsidan */
-    $_SESSION['login'] = false;
 }
 ?>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ if (!$_SESSION['login']) {
             </ul>
         </nav>
         <?php
-        $_SESSION['login'] = false;
+        session_destroy();
         echo "<p class=\"alert alert-success\">Nu är du utloggad!</p>";
         ?>
     </div>
