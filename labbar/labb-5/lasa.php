@@ -7,10 +7,6 @@
 */
 session_start();
 
-/* Är användaren inte inloggad? */
-if (!isset($_SESSION['login'])) {
-    /* Nej, gå till loginsidan */
-}
 ?>
 <!DOCTYPE html>
 <html lang="sv">
