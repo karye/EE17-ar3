@@ -24,11 +24,7 @@ include_once "./konfig-db.php";
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link" href="./lasa.php">Läsa</a></li>
                 <li class="nav-item"><a class="nav-link active" href="./skriva.php">Skriva</a></li>
-                <?php if (!isset($_SESSION['login'])) {?>
-                    <li class="nav-item"><a class="nav-link" href="./login.php">Logga in</a></li>
-                <?php } else {?>
-                    <li class="nav-item"><a class="nav-link" href="./logout.php">Logga ut</a></li>
-                <?php }?>
+                <li class="nav-item"><a class="nav-link" href="./lista.php">Admin</a></li>
             </ul>
         </nav>
         <main>

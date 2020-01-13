@@ -6,6 +6,7 @@
 * @license    PHP CC
 */
 session_start();
+include_once "./konfig-db.php";
 ?>
 <!DOCTYPE html>
 <html lang="sv">
@@ -18,18 +19,24 @@ session_start();
 </head>
 <body>
     <div class="kontainer">
-        <h1  class="display-4">Bloggen</h1>
+        <h1 class="display-4">Bloggen</h1>
         <nav>
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link" href="./lasa.php">Läsa</a></li>
+                <li class="nav-item"><a class="nav-link active" href="./lasa.php">Läsa</a></li>
                 <li class="nav-item"><a class="nav-link" href="./skriva.php">Skriva</a></li>
-                <li class="nav-item"><a class="nav-link" href="./login.php">Logga in</a></li>
+                <li class="nav-item"><a class="nav-link" href="./lista.php">Admin</a></li>
             </ul>
         </nav>
-        <?php
-        session_destroy();
-        echo "<p class=\"alert alert-success\">Nu är du utloggad!</p>";
-        ?>
+        <main>
+            <?php
+            /* Ta emot text från formuläret och spara ned i en textfil. */
+            $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
+
+            if ($id) {
+                echo "<p>Inlägg nr $id</p>";
+            }
+            ?>
+        </main>
     </div>
 </body>
 </html>

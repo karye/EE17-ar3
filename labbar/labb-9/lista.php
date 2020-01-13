@@ -15,6 +15,7 @@ include_once "./konfig-db.php";
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bloggen</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,9 +23,9 @@ include_once "./konfig-db.php";
         <h1 class="display-4">Bloggen</h1>
         <nav>
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" href="./lasa.php">Läsa</a></li>
+                <li class="nav-item"><a class="nav-link" href="./lasa.php">Läsa</a></li>
                 <li class="nav-item"><a class="nav-link" href="./skriva.php">Skriva</a></li>
-                <li class="nav-item"><a class="nav-link" href="./lista.php">Admin</a></li>
+                <li class="nav-item"><a class="nav-link active" href="./lista.php">Admin</a></li>
             </ul>
         </nav>
         <main>
@@ -51,13 +52,19 @@ include_once "./konfig-db.php";
             }
             
             /* 3. Ta emot svaret och bearbeta det */
+            echo "<table>";
+            echo "<tr><th>Datum</th><th>Rubrik</th><th>Inlägg</th><th colspan=\"2\">Handling</th></tr>";
             while ($rad = $result->fetch_assoc()) {
-                echo "<div class=\"inlagg\">";
-                echo "<h5>$rad[rubrik]</h5>";
-                echo "<h6>$rad[datum]</h6>";
-                echo "<p>$rad[inlagg]</p>";
-                echo "</div>";
+                $snippet = mb_substr($rad[inlagg], 0, 30) . "...";
+                echo "<tr>
+                    <td>$rad[datum]</td>
+                    <td>$rad[rubrik]</td>
+                    <td>$snippet</td>
+                    <td><a class=\"alert alert-warning\" href=\"redigera.php?id=$rad[id]\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></a></td>
+                    <td><a class=\"alert alert-danger\" href=\"radera.php?id=$rad[id]\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a></td>
+                    </tr>";
             }
+            echo "</table>";
 
             /* 4. Stäng ned anslutningen */
             $conn->close();

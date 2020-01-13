@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro|Damion|Pacifico&display=swap');
 
 /* Enkel CSS-reset */
 html {
@@ -16,7 +16,7 @@ body {
     background: #F9F6EB;
 }
 .kontainer {
-    width: 600px;
+    width: 700px;
     padding: 2em;
     margin: 3em auto;
     background: #fff;
@@ -29,7 +29,7 @@ body {
 .kol2 {
     margin: 1em 0;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 4fr;
     grid-gap: 1em;
 }
 .kol3 {
@@ -37,6 +37,9 @@ body {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-gap: 1em;
+}
+main {
+    padding: 1em;
 }
 form {
     margin: 1em 0;
@@ -71,7 +74,10 @@ h1, h2, h3 {
     color: #9c813d;
 }
 h1, h2, h3, p {
-    margin: 0.5em 0;
+    margin: 0.1em 0;
+}
+h1 {
+    font-family: 'Pacifico', cursive;
 }
 h3 {
     margin-top: 2em;
@@ -80,18 +86,17 @@ h3 {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 2em 0;
 }
 th, td {
     padding: 0.5em;
     text-align: left;
 }
 th {
-    background: #305A85;
+    background: #b9b9b9;
     color: #FFF;
 }
 tr:nth-child(even) {
-    background: #E6F2F8;
+    background: #f1f1f1;
 }
 tr:nth-child(odd) {
     background: #FFF;
@@ -111,4 +116,13 @@ form label {
 }
 form span {
     padding: 10px;
+}
+
+.inlagg {
+    font-family: 'Damion', cursive;
+    background: #f4fdff;
+    border: 1px solid #d0e3e6;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 5px;
 }
