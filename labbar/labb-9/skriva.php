@@ -1,7 +1,7 @@
 <?php
 /*
  * PHP version 7
- * @category   Blogg med fillagring
+ * @category   Blogg med lagring i databas
  * @author     Karim Ryde <karye.webb@gmail.com>
  * @license    PHP CC
  */
@@ -49,7 +49,7 @@ include_once "./konfig-db.php";
                 if ($conn->connect_error) {
                     die("Kunde inte ansluta till databasen: " . $conn->connect_error);
                 } else {
-                    echo "<p>Yipee! Gick bra att ansluta.</p>";
+                    //echo "<p>Yipee! Gick bra att ansluta.</p>";
                 }
 
                 /* 2. Registrera inlägget i tabellen */

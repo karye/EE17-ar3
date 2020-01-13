@@ -1,7 +1,7 @@
 <?php
 /*
 * PHP version 7
-* @category   Blogg med fillagring
+* @category   Blogg med lagring i databas
 * @author     Karim Ryde <karye.webb@gmail.com>
 * @license    PHP CC
 */

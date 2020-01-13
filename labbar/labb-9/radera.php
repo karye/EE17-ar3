@@ -1,7 +1,7 @@
 <?php
 /*
 * PHP version 7
-* @category   Blogg med fillagring
+* @category   Blogg med lagring i databas
 * @author     Karim Ryde <karye.webb@gmail.com>
 * @license    PHP CC
 */
@@ -22,9 +22,9 @@ include_once "./konfig-db.php";
         <h1 class="display-4">Bloggen</h1>
         <nav>
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" href="./lasa.php">Läsa</a></li>
+                <li class="nav-item"><a class="nav-link" href="./lasa.php">Läsa</a></li>
                 <li class="nav-item"><a class="nav-link" href="./skriva.php">Skriva</a></li>
-                <li class="nav-item"><a class="nav-link" href="./lista.php">Admin</a></li>
+                <li class="nav-item"><a class="nav-link active" href="./lista.php">Admin</a></li>
             </ul>
         </nav>
         <main>
