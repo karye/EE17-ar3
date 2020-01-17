@@ -23,8 +23,8 @@ include_once "./konfig-db.php";
         <nav>
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link active" href="./lasa.php">Läsa</a></li>
-                <li class="nav-item"><a class="nav-link" href="./skriva.php">Skriva</a></li>
-                <li class="nav-item"><a class="nav-link" href="./lista.php">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="./sok.php">Sök</a></li>
+                <li class="nav-item"><a class="nav-link" href="./admin/admin.php">Admin</a></li>
             </ul>
         </nav>
         <main>
@@ -40,7 +40,7 @@ include_once "./konfig-db.php";
             }
 
             /* 2. Ställ en SQL-fråga */
-            $sql = "SELECT * FROM blog";
+            $sql = "SELECT * FROM blog ORDER BY id DESC";
             $result = $conn->query($sql);
 
             /* Gick det bra? */

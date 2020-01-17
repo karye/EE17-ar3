@@ -23,25 +23,20 @@ include_once "./konfig-db.php";
         <nav>
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link" href="./lasa.php">Läsa</a></li>
-                <li class="nav-item"><a class="nav-link active" href="./skriva.php">Skriva</a></li>
-                <li class="nav-item"><a class="nav-link" href="./lista.php">Admin</a></li>
+                <li class="nav-item"><a class="nav-link active" href="./sok.php">Sök</a></li>
+                <li class="nav-item"><a class="nav-link" href="./admin/admin.php">Admin</a></li>
             </ul>
         </nav>
         <main>
             <form action="#" method="post">
-                <label>Rubrik</label>
-                <input type="text" name="rubrik" required>
-                <label>Inlägg</label>
-                <textarea class="form-control" name="inlagg" id="inlagg" cols="30" rows="10" required></textarea>
-                <button class="btn btn-primary">Spara inlägg</button>
+                <input type="text" name="soktext" required><br>
+                <button class="btn btn-primary">Sök i alla inlägg</button>
             </form>
-
             <?php
             /* Ta emot text från formuläret och spara ned i en textfil. */
-            $rubrik = filter_input(INPUT_POST, 'rubrik', FILTER_SANITIZE_STRING);
-            $inlagg = filter_input(INPUT_POST, 'inlagg', FILTER_SANITIZE_STRING);
+            $soktext = filter_input(INPUT_POST, 'soktext', FILTER_SANITIZE_STRING);
 
-            if ($rubrik && $inlagg) {
+            if ($soktext) {
                 /* 1. Logga in på mysql-servern och välj databas */
                 $conn = new mysqli($host, $användare, $lösenord, $databas);
 
@@ -53,14 +48,26 @@ include_once "./konfig-db.php";
                 }
 
                 /* 2. Registrera inlägget i tabellen */
-                $sql = "INSERT INTO blog (rubrik, inlagg) VALUES ('$rubrik', '$inlagg')";
+                $sql = "SELECT * FROM blog WHERE rubrik LIKE '%$soktext%' OR inlagg LIKE '%$soktext%'";
                 $result = $conn->query($sql);
 
                 /* Gick det bra? */
                 if (!$result) {
                     die("Något blev fel med SQL-satsen.");
                 } else {
-                    echo "<p>Inläggets har registrerats.</p>";
+                    // echo "<p>Lista på bilar kunde hämtas.</p>";
+                }
+
+                /* Hur många träffar blev det? */
+                echo "<h5>Hittade $result->num_rows inlägg som matchar söktexten.</h5>";
+                
+                /* 3. Ta emot svaret och bearbeta det */
+                while ($rad = $result->fetch_assoc()) {
+                    echo "<div class=\"inlagg\">";
+                    echo "<h5>$rad[rubrik]</h5>";
+                    echo "<h6>$rad[datum]</h6>";
+                    echo "<p>$rad[inlagg]</p>";
+                    echo "</div>";
                 }
             }
             ?>
