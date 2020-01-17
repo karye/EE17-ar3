@@ -1,5 +1,5 @@
 <?php
-include_once "./konfig-db.php";
+include_once "./admin/konfig-db.php";
 ?>
 <!DOCTYPE html>
 <html lang="sv">
