@@ -1,0 +1,4 @@
+AuthUserFile "/app/EE17-ar3/övningar/kapitel-12/.htpasswd"
+AuthType Basic
+AuthName "Admin"
+require valid-user

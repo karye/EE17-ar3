@@ -68,14 +68,26 @@ CREATE TABLE `blog` (
 ) ENGINE=InnoDB;
 
 --
+-- Index för tabell `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT för tabell `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- Dumpning av Data i tabell `blog`
 --
 
-INSERT INTO `blog` (`id`, `datum`, `rubrik`, `inlagg`) VALUES
-(7, '2020-01-13 07:34:47', 'Besök av rektor ', 'Ingrid tittar på en webblektion idag'),
-(8, '2020-01-13 12:07:34', 'Tränat hämta från databas', 'Idag har vi tränat att hämta data frånn en tabell.\r\nSamma 4 steg som tidigare. Sen SQL satsen &#34;SELECT * FROM blog&#34;.'),
-(9, '2020-01-17 07:45:07', 'Fredag', 'Idag ska vi implementera en fritextsökning.'),
-(10, '2020-01-17 07:46:35', 'Fredag', 'Idag ska vi också implementera ett lösenordsskydd på admin! ');
+INSERT INTO `blog` (`datum`, `rubrik`, `inlagg`) VALUES
+('2020-01-13 07:34:47', 'Besök av rektor ', 'Ingrid tittar på en webblektion idag'),
+('2020-01-13 12:07:34', 'Tränat hämta från databas', 'Idag har vi tränat att hämta data frånn en tabell.\r\nSamma 4 steg som tidigare. Sen SQL satsen &#34;SELECT * FROM blog&#34;.'),
+('2020-01-17 07:45:07', 'Fredag', 'Idag ska vi implementera en fritextsökning.'),
+('2020-01-17 07:46:35', 'Fredag', 'Idag ska vi också implementera ett lösenordsskydd på admin! ');
 
 -- --------------------------------------------------------
 
@@ -116,11 +128,6 @@ ALTER TABLE `bilar`
   ADD PRIMARY KEY (`id`),
   ADD KEY `reg` (`reg`);
 
---
--- Index för tabell `blog`
---
-ALTER TABLE `blog`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Index för tabell `personer`
@@ -137,12 +144,6 @@ ALTER TABLE `personer`
 --
 ALTER TABLE `bilar`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT för tabell `blog`
---
-ALTER TABLE `blog`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT för tabell `personer`
