@@ -1,7 +1,6 @@
 <?php
 /*
 *
-*
 * PHP version 7
 * @category   LAdda upp filer
 * @author     Karim Ryde <karye.webb@gmail.com>

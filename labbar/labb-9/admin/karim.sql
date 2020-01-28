@@ -39,20 +39,33 @@ CREATE TABLE `bilar` (
 ) ENGINE=InnoDB;
 
 --
+-- Index för tabell `bilar`
+--
+ALTER TABLE `bilar`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `reg` (`reg`);
+
+--
+-- AUTO_INCREMENT för tabell `bilar`
+--
+ALTER TABLE `bilar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- Dumpning av Data i tabell `bilar`
 --
 
-INSERT INTO `bilar` (`id`, `reg`, `marke`, `modell`, `arsmodell`, `pris`, `agare`) VALUES
-(1, 'ABC123', 'Saab', '9-5', 2003, 130000, 1),
-(2, 'ABC456', 'Volkswagen', 'Polo', 2003, 75000, 1),
-(3, 'DEF123', 'Volvo', 'S-80', 2002, 140000, 2),
-(4, 'DEF456', 'Toyota', 'Carina II', 1998, 30000, 2),
-(5, 'GHI123', 'Mazda', '626', 2001, 80000, 3),
-(6, 'JKL123', 'Audi', 'A8', 2001, 150000, 5),
-(7, 'MNO123', 'BMW', '323', 1998, 60000, 5),
-(8, 'PQR123', 'Ford', 'Mondeo', 2001, 90000, 4),
-(9, 'STU123', 'Volvo', '740', 1987, 35000, 5),
-(10, 'VYX123', 'Volkswagen', 'Golf', 1988, 40000, 5);
+INSERT INTO `bilar` (`reg`, `marke`, `modell`, `arsmodell`, `pris`, `agare`) VALUES
+('ABC123', 'Saab', '9-5', 2003, 130000, 1),
+('ABC456', 'Volkswagen', 'Polo', 2003, 75000, 1),
+('DEF123', 'Volvo', 'S-80', 2002, 140000, 2),
+('DEF456', 'Toyota', 'Carina II', 1998, 30000, 2),
+('GHI123', 'Mazda', '626', 2001, 80000, 3),
+('JKL123', 'Audi', 'A8', 2001, 150000, 5),
+('MNO123', 'BMW', '323', 1998, 60000, 5),
+('PQR123', 'Ford', 'Mondeo', 2001, 90000, 4),
+('STU123', 'Volvo', '740', 1987, 35000, 5),
+('VYX123', 'Volkswagen', 'Golf', 1988, 40000, 5);
 
 -- --------------------------------------------------------
 
@@ -105,45 +118,10 @@ CREATE TABLE `personer` (
 ) ENGINE=InnoDB;
 
 --
--- Dumpning av Data i tabell `personer`
---
-
-INSERT INTO `personer` (`id`, `fnamn`, `enamn`) VALUES
-(1, 'Kalle', 'Anka'),
-(2, 'Kajsa', 'Anka'),
-(3, 'Knatte', 'Anka'),
-(4, 'Tjatte', 'Anka'),
-(5, 'Fnatte', 'Anka'),
-(6, 'Knase', 'Anka'),
-(7, 'Alexander', 'Lukas');
-
---
--- Index för dumpade tabeller
---
-
---
--- Index för tabell `bilar`
---
-ALTER TABLE `bilar`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `reg` (`reg`);
-
-
---
 -- Index för tabell `personer`
 --
 ALTER TABLE `personer`
   ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT för dumpade tabeller
---
-
---
--- AUTO_INCREMENT för tabell `bilar`
---
-ALTER TABLE `bilar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT för tabell `personer`
@@ -151,6 +129,20 @@ ALTER TABLE `bilar`
 ALTER TABLE `personer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
+
+--
+-- Dumpning av Data i tabell `personer`
+--
+
+INSERT INTO `personer` (`fnamn`, `enamn`) VALUES
+('Kalle', 'Anka'),
+('Kajsa', 'Anka'),
+('Knatte', 'Anka'),
+('Tjatte', 'Anka'),
+('Fnatte', 'Anka'),
+('Knase', 'Anka'),
+('Alexander', 'Lukas');
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
