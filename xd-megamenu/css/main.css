@@ -1,0 +1,85 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+body, html {
+  font-family: 'Montserrat';
+  margin: 0;
+}
+
+body a, html a {
+  text-decoration: none;
+}
+
+header {
+  padding: 2em;
+}
+
+header .logo {
+  color: #000;
+  font-weight: bold;
+}
+
+header .menu-btn {
+  width: 18px;
+  float: right;
+  cursor: pointer;
+}
+
+section {
+  padding: 4em;
+}
+
+section h1 {
+  font-size: 4em;
+  margin: 1em auto;
+  width: 70%;
+}
+
+section h1::before {
+  content: ' ';
+  border-top: 5px solid #d3d3d3;
+  display: block;
+  width: 32%;
+}
+
+nav {
+  position: absolute;
+  background: #000;
+  padding: 2em;
+  width: calc(100% - 4em);
+  height: calc(100vh - 4em);
+  display: none;
+}
+
+nav .close-btn {
+  width: 18px;
+  float: right;
+  cursor: pointer;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 10% auto 0 auto;
+  padding: 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 80%;
+}
+
+nav ul a {
+  font-weight: bold;
+  color: #FFF;
+  font-size: 1.4em;
+}
+
+nav ul span {
+  color: gray;
+  display: block;
+  font-size: .75em;
+  margin-top: 20px;
+}
+
+.show-menu {
+  display: block;
+}
+/*# sourceMappingURL=main.css.map */
