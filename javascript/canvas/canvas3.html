@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Canvas grunder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="canvas">
+        Oops! Din webbläsare stödjer inte Canvas.
+    </canvas>
+    <script>
+        /* Element vi använder */
+        const eCanvas = document.querySelector("#canvas");
+
+        /* Ställ in bredd och höjd till samma som CSS */
+        eCanvas.width = eCanvas.scrollWidth;
+        eCanvas.height = eCanvas.scrollHeight;
+
+        /* Slå på ritmotorn */
+        var ctx = eCanvas.getContext("2d");
+
+        /* Skapa en bildbehållare */
+        var image = new Image();
+        image.src = "./donalds.png";
+        /* Lyssna på när bilden laddats klart, då rita */
+        image.addEventListener("load", function() {
+            ctx.drawImage(image, 100, 100);
+        });
+
+    </script>
+</body>
+</html>

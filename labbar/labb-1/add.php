@@ -32,12 +32,9 @@
             <button class="primary">Skicka</button>
         </form>
         <?php
-
         /* Ta emot data som skickas */
         $filnamn = filter_input(INPUT_POST, 'filnamn', FILTER_SANITIZE_STRING);
         if ($filnamn) {
-
-
         }
         ?>
     </div>
