@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Canvas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        /* Element vi arbetar med */
+        const eCanvas = document.querySelector("canvas");
+
+        /* Ställ in bredd och storlek = fullscreen */
+        eCanvas.width = 600;
+        eCanvas.height = 500;
+
+        /* Väljer rit-api */
+        var ctx = eCanvas.getContext("2d");
+
+        /* Slumpa fram en färg */
+        function slumpFärg() {
+            var r = Math.ceil(Math.random() * 255);
+            var g = Math.ceil(Math.random() * 255);
+            var b = Math.ceil(Math.random() * 255);
+            var färg = "rgb(" + r + ", " + g + ", " + b + ")";
+            console.log(färg);
+            return färg;
+        }
+
+        /* Globala variabler */
+        var marioX = Math.ceil(Math.random() * 400), // Figurens x-position
+            marioY = Math.ceil(Math.random() * 400), // Figurens y-position
+            dx = Math.ceil(Math.random() * 5),        // Förflyttningen i x-led
+            dy = Math.ceil(Math.random() * 5);        // Förflyttningen i y-led
+        var mario = new Image();
+
+        /* Innan spelt börjar ladda alla bilder */
+        function setup() {
+            mario.src = "./mario.png";
+            
+            window.requestAnimationFrame(gameLoop);
+        }
+
+        /* Här lägger vi allt som animeras */
+        function gameLoop() {
+            /* Sudda ut canvas */
+            ctx.clearRect(0, 0, 600, 500);
+
+            /* Rita ut en figur */
+            ctx.drawImage(mario, marioX, marioY, 50, 50);
+
+            /* Ändra figurens position */
+            marioX += dx;
+            marioY += dy;
+
+            /* Vad händer vi kanterna */
+            if ((marioY + 50) > 500 || (marioY) < 0) {
+                /* Byt riktning på y-led */
+                dy = -dy;
+                document.body.style.backgroundColor = slumpFärg();
+            }
+            if ((marioX + 50) > 600 || (marioX) < 0) {
+                /* Byt riktning i x-led */
+                dx = -dx;
+                document.body.style.backgroundColor = slumpFärg();
+            }
+
+            /* Upprepa loopen */
+            window.requestAnimationFrame(gameLoop);
+        }
+
+        /* Kör igång spelet */
+        setup();
+
+    </script>
+</body>
+</html>
