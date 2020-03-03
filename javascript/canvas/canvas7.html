@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grunder i 2d med canvas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        /* Element vi arbetar med */
+        const eCanvas = document.querySelector("canvas");
+
+        /* Ställ in bredd och storlek = fullscreen */
+        eCanvas.width = 600;
+        eCanvas.height = 500;
+
+        /* Globala variabler */
+        var ctx = eCanvas.getContext("2d");
+        var lem = {
+            x: 300,
+            y: 250,
+            dx: 0,
+            dy: 0
+        }
+
+        /* Skapa en bildbehållare */
+        var image = new Image();
+        image.src = "./lem.png";
+
+        /* Lyssna på tangenterna */
+        window.addEventListener("keydown", flytta);
+        function flytta(e) {
+            console.log("e.key = ", e.key);
+            if (e.key == "ArrowRight") {
+                lem.dx += 1;
+            }
+            if (e.key == "ArrowLeft") {
+                lem.dx -= 1;
+            }
+            if (e.key == "ArrowDown") {
+                lem.dy += 1;
+            }
+            if (e.key == "ArrowUp") {
+                lem.dy -= 1;
+            }
+        }
+
+        /* Loopen */
+        function animate() {
+            /* Tömma skärmen */
+            ctx.clearRect(0, 0, 600, 500);
+
+            /* Räkna ut koordinaterna */
+            lem.x += lem.dx;
+            lem.y += lem.dy;
+
+            /* Rita ut månlandaren */
+            ctx.drawImage(image, lem.x - 25, lem.y - 25, 50, 50);
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+    </script>
+</body>
+</html>
