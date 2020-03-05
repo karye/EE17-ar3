@@ -21,8 +21,12 @@
         var lem = {
             x: 300,
             y: 250,
-            dx: 0,
-            dy: 0
+            dx: 1,
+            dy: 1,
+            right: false,
+            left: false,
+            up: false,
+            down: false
         }
 
         /* Skapa en bildbehållare */
@@ -30,20 +34,36 @@
         image.src = "./lem.png";
 
         /* Lyssna på tangenterna */
-        window.addEventListener("keydown", flytta);
-        function flytta(e) {
+        window.addEventListener("keydown", knappIn);
+        function knappIn(e) {
             console.log("e.key = ", e.key);
             if (e.key == "ArrowRight") {
-                lem.dx += 1;
+                lem.right = true;
             }
             if (e.key == "ArrowLeft") {
-                lem.dx -= 1;
+                lem.left = true;
             }
             if (e.key == "ArrowDown") {
-                lem.dy += 1;
+                lem.down = true;
             }
             if (e.key == "ArrowUp") {
-                lem.dy -= 1;
+                lem.up = true;
+            }
+        }
+        window.addEventListener("keyup", knappUt);
+        function knappUt(e) {
+            console.log("e.key = ", e.key);
+            if (e.key == "ArrowRight") {
+                lem.right = false;
+            }
+            if (e.key == "ArrowLeft") {
+                lem.left = false;
+            }
+            if (e.key == "ArrowDown") {
+                lem.down = false;
+            }
+            if (e.key == "ArrowUp") {
+                lem.up = false;
             }
         }
 
@@ -53,8 +73,30 @@
             ctx.clearRect(0, 0, 600, 500);
 
             /* Räkna ut koordinaterna */
-            lem.x += lem.dx;
-            lem.y += lem.dy;
+            if (lem.right) {
+                lem.x += lem.dx;
+            }
+            if (lem.left) {
+                lem.x -= lem.dx;
+            }
+            if (lem.down) {
+                lem.y += lem.dy;
+            }
+            if (lem.up) {
+                lem.y -= lem.dy;
+            }
+
+            /* Inte ramla utanför canvas */
+            if (lem.y > 525) {
+                lem.y = -25;
+            } else if (lem.y < -25) {
+                lem.y = 525;
+            }
+            if (lem.x > 625) {
+                lem.x = -25;
+            } else if (lem.x < -25) {
+                lem.x = 625;
+            }
 
             /* Rita ut månlandaren */
             ctx.drawImage(image, lem.x - 25, lem.y - 25, 50, 50);
