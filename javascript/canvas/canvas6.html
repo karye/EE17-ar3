@@ -26,7 +26,7 @@
         };
 
         /* Startvärden */
-        ctx.strokeStyle = "red";
+        ctx.fillStyle = "#FFF";
         boll.x = Math.random() * 500 + 50;
         boll.y = Math.random() * 400 + 50;
         boll.dx = Math.random() * 5;
@@ -36,7 +36,7 @@
         function ritaBoll() {
             ctx.beginPath();
             ctx.arc(boll.x, boll.y, 30, 0, Math.PI * 2);
-            ctx.stroke();
+            ctx.fill();
         }
 
         /* Animationsloopen */
