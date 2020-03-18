@@ -1,5 +1,6 @@
 /* Element vi arbetar med */
 const eCanvas = document.querySelector("canvas");
+const eForm = document.querySelector("form");
 const eNamn = document.querySelector("#namn");
 const knappStart = document.querySelector("#start");
 const knappStop = document.querySelector("#stop");
@@ -36,17 +37,12 @@ smash = new Audio("./smash.wav");
 
 /* Läs highscore från databasen */
 lasaHighscore();
-eNamn.style.cssText = "border: none"
+//eNamn.style.cssText = "border: none"
 
 /* Starta spelet när vi trycker på Start */
-knappStart.addEventListener("click", function(e) {
+eForm.addEventListener("submit", function(e) {
     e.preventDefault();
-    if (!eNamn.checkValidity()) {
-        eNamn.style.cssText = "border: 2px solid red";
-        return;
-    } else {
-        eNamn.style.cssText = "border: 2px solid green";
-    }
+
     if (!startFlagga) {
         sparaNamn();
         startFlagga = true;
