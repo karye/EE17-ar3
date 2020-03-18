@@ -136,7 +136,7 @@ function animate() {
     /* Bollen skall studsa på racketen */
     if (boll.y >= racket.y && boll.y <= racket.y + racket.höjd) {
         if (boll.x - boll.radie <= racket.x + racket.bredd) {
-            console.log("Träff!", poäng);
+            //console.log("Träff!", poäng);
             boll.dx = -boll.dx;
             poäng++;
 
