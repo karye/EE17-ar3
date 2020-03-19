@@ -10,7 +10,14 @@ $result = $conn->query($sql);
 if (!$result) {
     die("Kunde inte köra sql-frågan: $conn->error");
 } else {
+    echo "<table>";
     while ($rad = $result->fetch_assoc()) {
-        echo "$rad[namn] $rad[highscore]<br>";
+        $datum = new DateTime($rad[datum]);
+        echo "<tr>
+        <td>$rad[namn]</td>
+        <td>$rad[highscore]</td>
+        <td>" . $datum->format('d/m Y') . "</td>
+        </tr>";
     }
+    echo "</table>";
 }

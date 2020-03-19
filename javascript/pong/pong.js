@@ -7,7 +7,7 @@ const knappStop = document.querySelector("#stop");
 const ePoäng = document.querySelector("#poäng");
 const eHighscore = document.querySelector("#highscore");
 
-/* Ställ in bredd och storlek = fullscreen */
+/* Ställ in bredd och storlek */
 eCanvas.width = 600;
 eCanvas.height = 500;
 
@@ -37,7 +37,6 @@ smash = new Audio("./smash.wav");
 
 /* Läs highscore från databasen */
 lasaHighscore();
-//eNamn.style.cssText = "border: none"
 
 /* Starta spelet när vi trycker på Start */
 eForm.addEventListener("submit", function(e) {
@@ -192,10 +191,6 @@ function sparaNamn() {
     /* Skicka data */
     ajax.open("POST", "./spara-namn.php", true);
     ajax.send(postData);
-
-    for (var value of postData.values()) {
-        console.log("Skickar", value);
-    }
 
     /* Ta emot svaret */
     ajax.addEventListener("loadend", function() {

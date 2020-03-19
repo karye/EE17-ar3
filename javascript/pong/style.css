@@ -15,7 +15,7 @@ canvas {
     background: #999;
     border: 2px solid #FFF;
     margin: 20px auto;
-    width: 800px;
+    width: 900px;
     display: grid;
     grid-template-columns: auto auto;
 }
@@ -29,4 +29,7 @@ input {
     width: 100%;
     margin: 5px 0;
     margin-bottom: 20px;
+}
+table {
+    width: 100%;
 }
