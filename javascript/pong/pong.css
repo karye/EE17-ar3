@@ -11,9 +11,9 @@ canvas {
     height: 600px;
 }
 .kontainer {
-    color: #FFF;
+    color: #fff;
     background: #999;
-    border: 2px solid #FFF;
+    border: 2px solid #fff;
     margin: 20px auto;
     width: 900px;
     display: grid;

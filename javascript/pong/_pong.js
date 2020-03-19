@@ -35,15 +35,11 @@ var poäng = 0;
 studs = new Audio("./studs.wav");
 smash = new Audio("./smash.wav");
 
-/* Läs highscore från databasen */
-//lasaHighscore();
-
 /* Starta spelet när vi trycker på Start */
 eForm.addEventListener("submit", function(e) {
     e.preventDefault();
 
     if (!startFlagga) {
-        //sparaNamn();
         startFlagga = true;
         reset();
     }
@@ -106,7 +102,6 @@ function gameOver() {
     ctx.fillStyle = "#FFF";
     ctx.textAlign = "center";
     ctx.fillText("Game Over!", 300, 200);
-    //sparaPoäng();
 }
 
 /* Animationsloopen */
@@ -175,63 +170,4 @@ function animate() {
     if (startFlagga) {
         requestAnimationFrame(animate);
     }
-}
-
-/* Skicka namn till PHP-skriptet för spara i databasen */
-function sparaNamn() {
-    /* Lås namnet */
-    eNamn.readOnly;
-
-    /* Omvandla data till post-data */
-    var postData = new FormData();
-    postData.append("namn", eNamn.value);
-
-    var ajax = new XMLHttpRequest();
-
-    /* Skicka data */
-    ajax.open("POST", "./spara-namn.php", true);
-    ajax.send(postData);
-
-    /* Ta emot svaret */
-    ajax.addEventListener("loadend", function() {
-        console.log("Tar emot svar :", this.responseText);
-    });
-}
-
-/* Skicka poäng efter avlutat spel till PHP-skript */
-function sparaPoäng() {
-    /* Omvandla data till post-data */
-    var postData = new FormData();
-    postData.append("namn", eNamn.value);
-    postData.append("poäng", poäng);
-
-    var ajax = new XMLHttpRequest();
-
-    /* Skicka data */
-    ajax.open("POST", "./spara-poang.php", true);
-    ajax.send(postData);
-
-    for (var value of postData.values()) {
-        console.log("Skickar", value);
-    }
-
-    /* Ta emot svaret */
-    ajax.addEventListener("loadend", function() {
-        console.log("Tar emot svar :", this.responseText);
-    });
-}
-
-/* Fråga PHP-skript efter 10 högsta highscore i databasen */
-function lasaHighscore() {
-    var ajax = new XMLHttpRequest();
-
-    /* Anropar */
-    ajax.open("POST", "./lasa-highscore.php", true);
-    ajax.send();
-
-    /* Ta emot svaret */
-    ajax.addEventListener("loadend", function() {
-        console.log("Tar emot svar :", this.responseText);
-        eHighscore.innerHTML = this.responseText;
-    });
 }
