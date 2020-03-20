@@ -214,7 +214,7 @@ function sparaPoäng() {
     postData.append("poäng", poäng);
 
     /* Skicka data */
-    ajax.open("POST", "./spara-poäng.php");
+    ajax.open("POST", "./spara-poang.php");
     ajax.send(postData);
 
     /* Ta emot svaret */
