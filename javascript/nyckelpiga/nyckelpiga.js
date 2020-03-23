@@ -5,8 +5,10 @@ const eCanvas = document.querySelector("canvas");
 eCanvas.width = 800;
 eCanvas.height = 600;
 
-/* Globala variabler */
+/* Starta canvas rityta */
 var ctx = eCanvas.getContext("2d");
+
+/* Globala variabler */
 var piga = {
     x: 0,
     y: 0,
@@ -46,7 +48,7 @@ window.addEventListener("keydown", function(e) {
     }
 });
 
-/* Spel-loopen */
+/* Animationsloopen */
 function gameLoop() {
     /* Rensa canvas */
     ctx.clearRect(0, 0, eCanvas.width, eCanvas.height);
