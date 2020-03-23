@@ -33,6 +33,9 @@ var racket = {
 var startFlagga = false;
 var poäng = 0;
 
+/* Hämta highscore från databasen */
+lasaHighscore();
+
 /* Skapa ljudobjekt */
 /* studs = new Audio("./studs.wav");
 smash = new Audio("./smash.wav"); */
@@ -179,7 +182,7 @@ function animate() {
 function sparaNamn() {
     var namn = eNamn.value;
     console.log("namn=", namn);
-    
+
     /* Låser input-rutan */
     eNamn.readOnly;
 
@@ -197,7 +200,6 @@ function sparaNamn() {
     /* Ta emot svaret */
     ajax.addEventListener("loadend", function() {
         console.log("Tar emot svar=", this.responseText);
-        
     });
 }
 
@@ -220,6 +222,21 @@ function sparaPoäng() {
     /* Ta emot svaret */
     ajax.addEventListener("loadend", function() {
         console.log("Tar emot svar=", this.responseText);
-        
+    });
+}
+
+/* Hämta highscore, dvs 5 högsta poängen */
+function lasaHighscore() {
+    /* Skapa ajax för att kunna skicka data */
+    var ajax = new XMLHttpRequest();
+
+    /* Gör ett anrop */
+    ajax.open("POST", "./lasa-highscore.php");
+    ajax.send();
+
+    /* Ta emot svaret */
+    ajax.addEventListener("loadend", function() {
+        console.log("Tar emot svar=", this.responseText);
+        eHighscore.innerHTML = this.responseText;
     });
 }
