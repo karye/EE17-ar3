@@ -3,12 +3,12 @@ body {
     background: #000;
 }
 canvas {
-    background: #202020;
-}
-#canvas {
+    background: #d1d1d1;
     border: 1px solid purple;
     width: 800px;
     height: 600px;
+    margin: 10px auto;
+    display: block;
 }
 .kontainer {
     color: #fff;
