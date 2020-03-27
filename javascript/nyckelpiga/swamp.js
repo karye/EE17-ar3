@@ -9,10 +9,21 @@ eCanvas.height = 600;
 var ctx = eCanvas.getContext("2d");
 
 /* Globala variabler */
+var gameOver = false;
 var piga = {
     rad: 0,
     kol: 0,
     rot: 0,
+    bild: new Image()
+}
+var monster = {
+    x: 0,
+    y: 0,
+    bild: new Image()
+}
+var monster2 = {
+    x: 0,
+    y: 0,
     bild: new Image()
 }
 /* 16 kolumner x 12 rader (varje ruta är 50*50px) */
@@ -31,14 +42,26 @@ var karta = [
     [0,  0,  0,  1,  2,  2,  2,  2,  2, 2, 2, 2, 2, 2, 2, 2]
 ];
 
-/* Nyckelpigans startläge */
+/* Nyckelpigans startvärden */
 piga.rad = 0;
 piga.kol = 0;
 piga.bild.src = "./nyckelpiga.png";
 
+/* Monstrets startvärden */
+monster.x = Math.ceil(Math.random() * 750);
+monster.y = 0;
+monster.bild.src = "./monster.png";
+monster2.x = Math.ceil(Math.random() * 750);
+monster2.y = 0;
+monster2.bild.src = "./monster.png";
+
 /* Ladda in tilesheet */
 var tileSheet = new Image();
 tileSheet.src = "./tilesheet-swamp.png";
+
+/* Välj textinställningar */
+ctx.font = "bold 96px sans-serif";
+ctx.textAlign = "center";
 
 /* Rita ut nyckelpigan */
 function ritaPiga() {
@@ -47,6 +70,47 @@ function ritaPiga() {
     ctx.rotate(piga.rot);
     ctx.drawImage(piga.bild, -25, -25, 50, 50);
     ctx.restore();
+}
+
+/* Rita ut monstret */
+function ritaMonster() {
+    ctx.drawImage(monster.bild, monster.x, monster.y);
+    monster.y++;
+    if (monster.y > 600) {
+        monster.y = 0;
+        monster.x = Math.ceil(Math.random() * 750);
+    }
+}
+function ritaMonster2() {
+    ctx.drawImage(monster2.bild, monster2.x, monster2.y);
+    monster2.y++;
+    if (monster2.y > 600) {
+        monster2.y = 0;
+        monster2.x = Math.ceil(Math.random() * 750);
+    }
+}
+
+/* Kolla om pigan träffas av monstret */
+function krock() {
+    /* Om monster är i höjd med pigan */
+    if ((piga.rad * 50) < monster.y && monster.y < (piga.rad * 50 + 50)) {
+        if ((piga.kol * 50) < monster.x && monster.x < (piga.kol * 50 + 50)) {
+            ctx.fillStyle = "#888";
+            ctx.fillRect(0, 0, 800, 600);
+            ctx.fillStyle = "red";
+            ctx.fillText("Game Over!", 400, 300);
+            gameOver = true;
+        }
+    }
+    if ((piga.rad * 50) < monster2.y && monster2.y < (piga.rad * 50 + 50)) {
+        if ((piga.kol * 50) < monster2.x && monster2.x < (piga.kol * 50 + 50)) {
+            ctx.fillStyle = "#888";
+            ctx.fillRect(0, 0, 800, 600);
+            ctx.fillStyle = "red";
+            ctx.fillText("Game Over!", 400, 300);
+            gameOver = true;
+        }
+    }
 }
 
 /* Rita ut kartan */
@@ -109,7 +173,14 @@ function gameLoop() {
     ritaKarta();
     ritaPiga();
 
-    requestAnimationFrame(gameLoop);
+    ritaMonster();
+    ritaMonster2();
+
+    krock();
+
+    if (!gameOver) {
+        requestAnimationFrame(gameLoop);
+    }
 }
 
 /* Starta spelet */
