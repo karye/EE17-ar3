@@ -1,5 +1,6 @@
 /* Element vi arbetar med */
 const eCanvas = document.querySelector("canvas");
+const ePoäng = document.querySelector("#poäng");
 
 /* Ställ in bredd och storlek */
 eCanvas.width = 800;
@@ -8,24 +9,51 @@ eCanvas.height = 600;
 /* Starta canvas rityta */
 var ctx = eCanvas.getContext("2d");
 
+/* ***************** */
 /* Globala variabler */
-var gameOver = false;
+
+/* Skapa piga och monster */
 var piga = {
     rad: 0,
     kol: 0,
     rot: 0,
     bild: new Image()
 }
-var monster = {
-    x: 0,
-    y: 0,
+var monster1 = {
+    x: Math.ceil(Math.random() * 750 + 25),
+    y: -Math.ceil(Math.random() * 500),
     bild: new Image()
 }
 var monster2 = {
-    x: 0,
-    y: 0,
+    x: Math.ceil(Math.random() * 750 + 25),
+    y: -Math.ceil(Math.random() * 500),
     bild: new Image()
 }
+var monster3 = {
+    x: Math.ceil(Math.random() * 750 + 25),
+    y: -Math.ceil(Math.random() * 500),
+    bild: new Image()
+}
+var mynt1 = {
+    x: Math.ceil(Math.random() * 750 + 25),
+    y: -Math.ceil(Math.random() * 500),
+    bild: new Image()
+}
+var mynt2 = {
+    x: Math.ceil(Math.random() * 750 + 25),
+    y: -Math.ceil(Math.random() * 500),
+    bild: new Image()
+}
+var mynt3 = {
+    x: Math.ceil(Math.random() * 750 + 25),
+    y: -Math.ceil(Math.random() * 500),
+    bild: new Image()
+}
+
+/* Spelets variabler */
+var gameOver = false;
+var poäng = 0;
+
 /* 16 kolumner x 12 rader (varje ruta är 50*50px) */
 var karta = [
     [0,  1,  2, 33, 33, 33,  3,  0,  0,  0, 54,  0,  0,  0, 54,  0],
@@ -42,18 +70,29 @@ var karta = [
     [0,  0,  0,  1,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2,  2]
 ];
 
-/* Nyckelpigans startvärden */
-piga.rad = 0;
-piga.kol = 0;
-piga.bild.src = "./nyckelpiga.png";
+/* ********************************* */
+/* Inställningar innan spelet startar */
 
-/* Monstrets startvärden */
-monster.x = Math.ceil(Math.random() * 750);
-monster.y = 0;
-monster.bild.src = "./monster.png";
-monster2.x = Math.ceil(Math.random() * 750);
-monster2.y = 0;
+/* Ladda bilderna vi behöver */
+piga.bild.src = "./nyckelpiga.png";
+monster1.bild.src = "./monster.png";
 monster2.bild.src = "./monster.png";
+monster3.bild.src = "./monster.png";
+mynt1.bild.src = "./coin-sprite.png";
+mynt2.bild.src = "./coin-sprite.png";
+mynt3.bild.src = "./coin-sprite.png";
+
+/* Lagra alla monster i en array */
+var monsters = [];
+monsters.push(monster1);
+monsters.push(monster2);
+monsters.push(monster3);
+
+/* Lägg alla mynt i en array */
+var mynten = [];
+mynten.push(mynt1);
+mynten.push(mynt2);
+mynten.push(mynt3);
 
 /* Ladda in tilesheet */
 var tileSheet = new Image();
@@ -62,6 +101,13 @@ tileSheet.src = "./tilesheet-swamp.png";
 /* Välj textinställningar */
 ctx.font = "bold 96px sans-serif";
 ctx.textAlign = "center";
+ctx.fillStyle = "#000";
+
+/* Starta spelet */
+gameLoop();
+
+/* ************ */
+/* Funktionerna */
 
 /* Rita ut nyckelpigan */
 function ritaPiga() {
@@ -72,29 +118,31 @@ function ritaPiga() {
     ctx.restore();
 }
 
-/* Rita ut monstret */
-function ritaMonster() {
-    ctx.drawImage(monster.bild, monster.x, monster.y);
-    monster.y++;
-    if (monster.y > 600) {
-        monster.y = 0;
-        monster.x = Math.ceil(Math.random() * 750);
-    }
-}
-function ritaMonster2() {
-    ctx.drawImage(monster2.bild, monster2.x, monster2.y);
-    monster2.y++;
-    if (monster2.y > 600) {
-        monster2.y = 0;
-        monster2.x = Math.ceil(Math.random() * 750);
+/* Rita ut en monsterfigur */
+function ritaMonster(figur) {
+    ctx.drawImage(figur.bild, figur.x, figur.y);
+    figur.y++;
+    if (figur.y > 600) {
+        figur.y = 0;
+        figur.x = Math.ceil(Math.random() * 750);
     }
 }
 
-/* Kolla om pigan träffas av monstret */
-function krock() {
+/* Rita ut ett mynt */
+function ritaMynt(figur) {
+    ctx.drawImage(figur.bild, 0, 0, 50, 50, figur.x, figur.y, 50, 50);
+    figur.y++;
+    if (figur.y > 600) {
+        figur.y = 0;
+        figur.x = Math.ceil(Math.random() * 750);
+    }
+}
+
+/* Kolla om monsterfiguren krockar med pigan */
+function krockMedPiga(figur) {
     /* Om monster är i höjd med pigan */
-    if ((piga.rad * 50) < monster.y && monster.y < (piga.rad * 50 + 50)) {
-        if ((piga.kol * 50) < monster.x && monster.x < (piga.kol * 50 + 50)) {
+    if ((piga.rad * 50 - 25) < figur.y && figur.y < (piga.rad * 50 + 25)) {
+        if ((piga.kol * 50 - 25) < figur.x && figur.x < (piga.kol * 50 + 25)) {
             ctx.fillStyle = "#888";
             ctx.fillRect(0, 0, 800, 600);
             ctx.fillStyle = "red";
@@ -102,13 +150,20 @@ function krock() {
             gameOver = true;
         }
     }
-    if ((piga.rad * 50) < monster2.y && monster2.y < (piga.rad * 50 + 50)) {
-        if ((piga.kol * 50) < monster2.x && monster2.x < (piga.kol * 50 + 50)) {
-            ctx.fillStyle = "#888";
-            ctx.fillRect(0, 0, 800, 600);
-            ctx.fillStyle = "red";
-            ctx.fillText("Game Over!", 400, 300);
-            gameOver = true;
+}
+
+/* Få poäng om mynt träffas av pigan */
+function plockaMynt(figur) {
+    if ((piga.rad * 50 - 25) < figur.y && figur.y < (piga.rad * 50 + 25)) {
+        if ((piga.kol * 50 - 25) < figur.x && figur.x < (piga.kol * 50 + 25)) {
+
+            /* Ge en poäng */
+            poäng++;
+            ePoäng.textContent = poäng;
+
+            /* Spawna om myntet */
+            figur.x = Math.ceil(Math.random() * 750);
+            figur.y = -Math.ceil(Math.random() * 500);
         }
     }
 }
@@ -160,23 +215,23 @@ window.addEventListener("keydown", function(e) {
 });
 
 /* Animationsloopen */
-ctx.fillStyle = "#000";
 function gameLoop() {
     /* Rensa canvas */
     ctx.clearRect(0, 0, eCanvas.width, eCanvas.height);
 
     ritaKarta();
+
+    /* För varje mynt */
+    mynten.forEach(ritaMynt);
+    mynten.forEach(plockaMynt);
+
     ritaPiga();
 
-    ritaMonster();
-    ritaMonster2();
-
-    krock();
+    /* För varje monster i monsters-arrayen */
+    monsters.forEach(ritaMonster);
+    monsters.forEach(krockMedPiga);
 
     if (!gameOver) {
         requestAnimationFrame(gameLoop);
     }
 }
-
-/* Starta spelet */
-gameLoop();
