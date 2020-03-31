@@ -70,13 +70,13 @@ window.addEventListener("keydown", function(e) {
             if (karta[piga.rad][piga.kol + 1] == 0) {
                 piga.kol++;
             }
-            piga.rot = 90 * (Math.PI / 180);
+            piga.rot = Math.PI / 2;
             break;
         case "ArrowLeft":
             if (karta[piga.rad][piga.kol - 1] == 0) {
                 piga.kol--;
             }
-            piga.rot = -90 * (Math.PI / 180);
+            piga.rot = -Math.PI / 2;
             break;
         case "ArrowDown":
             if (karta[piga.rad + 1][piga.kol] == 0) {

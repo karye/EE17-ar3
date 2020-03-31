@@ -51,7 +51,7 @@ var mynt3 = {
 }
 
 /* Spelets variabler */
-var gameOver = false;
+var isGameOver = false;
 var poäng = 0;
 
 /* 16 kolumner x 12 rader (varje ruta är 50*50px) */
@@ -113,7 +113,7 @@ gameLoop();
 function ritaPiga() {
     ctx.save();
     ctx.translate(piga.kol * 50 + 25, piga.rad * 50 + 25);
-    ctx.rotate(piga.rot);
+    ctx.rotate(piga.rot * (Math.PI / 180));
     ctx.drawImage(piga.bild, -25, -25, 50, 50);
     ctx.restore();
 }
@@ -140,22 +140,23 @@ function ritaMynt(figur) {
 
 /* Kolla om monsterfiguren krockar med pigan */
 function krockMedPiga(figur) {
+    var px = piga.kol * 50;
+    var py = piga.rad * 50 + 25;
+
     /* Om monster är i höjd med pigan */
-    if ((piga.rad * 50 - 25) < figur.y && figur.y < (piga.rad * 50 + 25)) {
-        if ((piga.kol * 50 - 25) < figur.x && figur.x < (piga.kol * 50 + 25)) {
-            ctx.fillStyle = "#888";
-            ctx.fillRect(0, 0, 800, 600);
-            ctx.fillStyle = "red";
-            ctx.fillText("Game Over!", 400, 300);
-            gameOver = true;
+    if (py < figur.y && figur.y < py + 50) {
+        if (px < figur.x && figur.x < px + 50) {
+            isGameOver = true;
         }
     }
 }
 
 /* Få poäng om mynt träffas av pigan */
 function plockaMynt(figur) {
-    if ((piga.rad * 50 - 25) < figur.y && figur.y < (piga.rad * 50 + 25)) {
-        if ((piga.kol * 50 - 25) < figur.x && figur.x < (piga.kol * 50 + 25)) {
+    var px = piga.kol * 50;
+    var py = piga.rad * 50 + 25;
+    if (py < figur.y && figur.y < py + 50) {
+        if (px < figur.x && figur.x < px + 50) {
 
             /* Ge en poäng */
             poäng++;
@@ -184,6 +185,14 @@ function ritaKarta() {
     }
 }
 
+/* Game Over! */
+function gameOver() {
+    ctx.fillStyle = "#888";
+    ctx.fillRect(0, 0, 800, 600);
+    ctx.fillStyle = "red";
+    ctx.fillText("Game Over!", 400, 300);
+}
+
 /* Lyssna på pil-tangenter */
 window.addEventListener("keydown", function(e) {
     switch (e.key) {
@@ -191,19 +200,19 @@ window.addEventListener("keydown", function(e) {
             if (karta[piga.rad][piga.kol + 1] == 0) {
                 piga.kol++;
             }
-            piga.rot = 90 * (Math.PI / 180);
+            piga.rot = 90;
             break;
         case "ArrowLeft":
             if (karta[piga.rad][piga.kol - 1] == 0) {
                 piga.kol--;
             }
-            piga.rot = -90 * (Math.PI / 180);
+            piga.rot = 270;
             break;
         case "ArrowDown":
             if (karta[piga.rad + 1][piga.kol] == 0) {
                 piga.rad++;
             }
-            piga.rot = Math.PI;
+            piga.rot = 180;
             break;
         case "ArrowUp":
             if (karta[piga.rad - 1][piga.kol] == 0) {
@@ -231,7 +240,9 @@ function gameLoop() {
     monsters.forEach(ritaMonster);
     monsters.forEach(krockMedPiga);
 
-    if (!gameOver) {
+    if (!isGameOver) {
         requestAnimationFrame(gameLoop);
+    } else {
+        gameOver();
     }
 }

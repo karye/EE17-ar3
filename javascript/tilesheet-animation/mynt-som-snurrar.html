@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="#">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>nyckelpiga racet</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./tank.css">
+</head>
+<body>
+    <div class="kontainer">
+        <canvas></canvas>
+        <h4>Poäng <span id="poäng">0</span></h4>
+    </div>
+    <script>
+        /* Element vi arbetar med */
+        const eCanvas = document.querySelector("canvas");
+        const ePoäng = document.querySelector("#poäng");
+
+        /* Ställ in bredd och storlek */
+        eCanvas.width = 800;
+        eCanvas.height = 600;
+
+        /* Starta canvas rityta */
+        var ctx = eCanvas.getContext("2d");
+
+        /* Ladda in bilden */
+        var coinSprite = new Image();
+        coinSprite.src = "./coin-sprite.png";
+
+        /* Frame index i coin-sprite */
+        var myntIndex = 0;
+        var myntFrames = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9];
+
+        /* Starta spelet */
+        gameLoop();
+
+        /* ************ */
+        /* Funktionerna */
+
+        function ritaMynt() {
+            var ruta = myntFrames[myntIndex];
+            ctx.drawImage(coinSprite, ruta * 44, 0, 44, 40, 100, 100, 44, 40);
+
+            myntIndex++;
+            if (myntIndex == myntFrames.length) {
+                myntIndex = 0;
+            }
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0, 0, eCanvas.width, eCanvas.height);
+
+            ritaMynt();
+
+            requestAnimationFrame(gameLoop);
+        }
+    </script>
+</body>
+</html>
