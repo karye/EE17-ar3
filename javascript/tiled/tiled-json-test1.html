@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="#">
+    <title>Testar att visa Tiled karta i canvas</title>
+    <link rel="stylesheet" href="./tiled.css">
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        /* Element vi jobbar med */
+        const eCanvas = document.querySelector("canvas");
+
+        /* Ställ in bredd och storlek */
+        /* Samma mått som i Tiled */
+        eCanvas.width = 1280;
+        eCanvas.height = 800;
+
+        /* Starta ritmotorn */
+        var ctx = eCanvas.getContext("2d");
+
+        /* Objekten */
+        var spelplan = {
+            rutor: 16,
+            bild: new Image()
+        };
+
+        /* Ladda in tileSheet */
+        spelplan.bild.src = "./forest_tiles.png";
+
+        /* ********** */
+        /* Funktioner */
+
+        function läsaInJson() {
+            
+            /* Skapa ajax för att kunna hämta in en fil */
+            var ajax = new XMLHttpRequest();
+
+            /* Gör ett anrop */
+            ajax.open("POST", "./tiled-ca.json", true);
+            ajax.send();
+
+            /* Ta emot svaret */
+            ajax.addEventListener("loadend", function() {
+                //console.log(this.responseText);
+                /* Avkoda JSON-data */
+                var data = JSON.parse(this.responseText);
+                
+                /* För varje lager */
+                data.layers.forEach(function(lager) {
+                    console.log(lager.name, lager.height, lager.width);
+                    
+                    ritaSpelPlan(lager);
+                });
+                
+            });
+        }
+
+        function ritaSpelPlan(lager) {
+            var index = 0;
+
+            /* Gå igenom varje rad på canvas */
+            for (let rad = 0; rad < lager.height; rad++) {
+
+                /* Gå igenom varje kolumn på canvas */
+                for (let kol = 0; kol < lager.width; kol++) {
+
+                    /* Rita inte ut om rutan är tom */
+                    if (lager.data[index] != 0) {
+
+                        /* Räkna position i tilesheet */
+                        var rutaX = Math.floor(lager.data[index] % 16 - 1) * 32;
+                        var rutaY = Math.floor(lager.data[index] / 16) * 32;
+
+                        /* Rita ut rutan på canvas */
+                        ctx.drawImage(spelplan.bild, rutaX, rutaY, 32, 32, kol * 32, rad * 32, 32, 32);
+                    }
+
+                    /* Gå till nästa position på canvas */
+                    index++;
+                }
+            }
+        }
+
+        spelplan.bild.addEventListener("load", läsaInJson);
+    </script>
+</body>
+</html>
