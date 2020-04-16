@@ -74,6 +74,18 @@ class Hjälte {
             ctx.drawImage(this.bild, 0, 0, 68, 72, this.x, this.y, 50, 50);
         }
     }
+    kollaKollision(figur) {
+        if (this.x <= (figur.x + 32) && figur.x <= (this.x + 32) &&
+            this.y <= (figur.y + 32) && figur.y <= (this.y + 32)) {
+            figur.spawna();
+            spel.poäng++;
+        }
+    
+        /* Skriv ut */
+        ctx.font = "24px Helvetica";
+        ctx.fillText("Fångade monster: " + spel.poäng, 32, 50);
+        ctx.fillText("Tid kvar: " + spel.tid, 32, 80);
+    }
 }
 var hjälte = new Hjälte();
 
@@ -152,28 +164,13 @@ window.setInterval(function () {
 /* Funktionerna */
 /* ************ */
 
-/* Kollar om hjälten träffar monstret */
-function kollaKollision() {
-    /* Träffar hjälten monstret? */
-    if (hjälte.x <= (monster.x + 32) && monster.x <= (hjälte.x + 32) &&
-        hjälte.y <= (monster.y + 32) && monster.y <= (hjälte.y + 32)) {
-        monster.spawna();
-        spel.poäng++;
-    }
-
-    /* Skriv ut */
-    ctx.font = "24px Helvetica";
-    ctx.fillText("Fångade monster: " + spel.poäng, 32, 50);
-    ctx.fillText("Tid kvar: " + spel.tid, 32, 80);
-}
-
 /* Spelloopen */
 function gameLoop() {
     spel.rita();
     hjälte.rita();
     monster.rita();
 
-    kollaKollision();
+    hjälte.kollaKollision(monster);
 
     if (!spel.isGameOver) {
         requestAnimationFrame(gameLoop);
