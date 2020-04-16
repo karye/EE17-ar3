@@ -17,6 +17,10 @@ var hjälte = {
     x: 0,
     y: 0,
     a: 5,
+    vänster: false,
+    höger: false,
+    upp: false,
+    ned: false,
     bild: new Image()
 };
 var monster = {
@@ -45,24 +49,31 @@ gameLoop();
 window.addEventListener("keydown", function (e) {
     switch (e.key) {
         case "ArrowRight":
-            if (hjälte.x < 455) {
-                hjälte.x += hjälte.a;
-            }
+            hjälte.höger = true;
             break;
         case "ArrowLeft":
-            if (hjälte.x > 30) {
-                hjälte.x -= hjälte.a;
-            }
+            hjälte.vänster = true;
             break;
         case "ArrowDown":
-            if (hjälte.y < 420) {
-                hjälte.y += hjälte.a;
-            }
+            hjälte.ned = true;
             break;
         case "ArrowUp":
-            if (hjälte.y > 30) {
-                hjälte.y -= hjälte.a;
-            }
+            hjälte.upp = true;
+    }
+});
+window.addEventListener("keyup", function (e) {
+    switch (e.key) {
+        case "ArrowRight":
+            hjälte.höger = false;
+            break;
+        case "ArrowLeft":
+            hjälte.vänster = false;
+            break;
+        case "ArrowDown":
+            hjälte.ned = false;
+            break;
+        case "ArrowUp":
+            hjälte.upp = false;
     }
 });
 
@@ -97,6 +108,18 @@ function ritaBakgrund() {
     ctx.drawImage(spel.bild, 0, 0);
 }
 function ritaHjälte() {
+    if (hjälte.höger) {
+        hjälte.x += 3;
+    }
+    if (hjälte.vänster) {
+        hjälte.x -= 3;
+    }
+    if (hjälte.ned) {
+        hjälte.y += 3;
+    }
+    if (hjälte.upp) {
+        hjälte.y -= 3;
+    }
     ctx.drawImage(hjälte.bild, hjälte.x, hjälte.y);
 }
 function ritaMonster() {
