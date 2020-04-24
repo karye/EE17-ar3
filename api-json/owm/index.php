@@ -51,11 +51,11 @@
 
         /* Plocka ut temperaturen i Celsius */
         $temp = $jsonData->main->temp;
-        echo "<p>Temperaturen just nu är: $temp&deg; C</p>";
+        echo "<p>Temperaturen är just nu: $temp&deg; C</p>";
 
         /* Plocka ut vindhastigheten */
         $vind = $jsonData->wind->speed;
-        echo "<p>Vindhastigheten just nu är: $vind m/s</p>";
+        echo "<p>Vindhastigheten är just nu: $vind m/s</p>";
 
         ?>
     </div>
