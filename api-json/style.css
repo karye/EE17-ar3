@@ -13,7 +13,7 @@ body, h1, h2, h3, h4, h5, h6, p, ul {
 }
 
 body {
-    background: #F9F6EB url("./bilder/photo-1577271015616-9b74c52daace.jpg") fixed;
+    background: #F9F6EB;
     background-size: cover;
 }
 .kontainer {
