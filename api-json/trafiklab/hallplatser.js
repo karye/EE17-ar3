@@ -25,7 +25,7 @@ function getLocation() {
     }
 }
 
-/* Visa användares latitude och longitude */
+/* Visa användarens latitude och longitude */
 function showPosition(position) {
     var latHem = position.coords.latitude;
     var lonHem = position.coords.longitude;

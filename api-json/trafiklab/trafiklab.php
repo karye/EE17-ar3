@@ -17,7 +17,7 @@ if ($lat && $lon) {
     $api = "5a04359da47042b7837f88a5c61908c9";
 
     /* Sökradien i meter */
-    $radie = 1000;
+    $radius = 1000;
 
     /* Max antal svar, dvs antal hållplatser*/
     $max = 25;
