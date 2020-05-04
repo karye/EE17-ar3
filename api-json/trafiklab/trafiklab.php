@@ -31,7 +31,11 @@ if ($lat && $lon) {
     /* Avkoda JSON */
     $jsonData = json_decode($json);
 
-    var_dump($jsonData);
+    /* Plocka ut hållplatserna (arrayen) */
+    $stopLocation = $jsonData->LocationList->StopLocation;
+
+    /* Skicka tillbaka arrayen */
+    echo json_encode($stopLocation);
 } else {
     echo "Något blev fel med indata.";
 }
