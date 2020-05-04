@@ -55,7 +55,7 @@ function showPosition(position) {
 
         /* Loopa igenom arrayen och infoga markers */
         hållplatser.forEach(function (hållplats) {
-            console.log(hållplats.name, hållplats.lat, hållplats.lon);
+            //console.log(hållplats.name, hållplats.lat, hållplats.lon);
 
             var buss = document.createElement('div');
             buss.className = 'buss';
@@ -70,5 +70,5 @@ function showPosition(position) {
                 .setPopup(popup)
                 .addTo(map);
         });
-    })
+    });
 }
