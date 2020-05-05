@@ -31,10 +31,17 @@ function showPosition(position) {
     var lonHem = position.coords.longitude;
     console.log("Latitude: " + latHem + ", Longitude: " + lonHem);
 
-    /* Infoga en marker på kartan */
+    /* Infoga en marker för hem på kartan */
     var marker = new mapboxgl.Marker()
         .setLngLat([lonHem, latHem])
         .addTo(map);
+
+    /* Flyg/panorera till hemposition */
+    map.flyTo({
+        center: [lonHem, latHem],
+        zoom: 14,
+        speed: 0.3
+    });
 
     /* Packa in lat och lon till ett POST-paket */
     var postData = new FormData();
