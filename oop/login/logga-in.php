@@ -32,10 +32,10 @@ include_once("./resurser/konfig-db.php");
             <nav>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link" href="logga-in.php">Logga in</a>
+                        <a class="nav-link active" href="logga-in.php">Logga in</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="registrera.php">Registrera</a>
+                        <a class="nav-link" href="registrera.php">Registrera</a>
                     </li>
                 </ul>
             </nav>
@@ -49,11 +49,9 @@ include_once("./resurser/konfig-db.php");
             /* Om vi har tagit emot data då registrera i databasen */
             if ($anamn && $lösen) {
                 /* @TODO: Be användaren skriva lösenordet 2 ggr */
-                /* Skapa en hash på lösenordet */
-                $hash = password_hash($lösen, PASSWORD_DEFAULT);
 
                 /* SQL för spara i en tabell */
-                $sql = "INSERT INTO admin SET anamn='$anamn', hash='$hash'";
+                $sql = "SELECT * FROM admin WHERE anamn='$anamn'";
 
                 /* Kör SQL-frågan */
                 $resultat = $conn->query($sql);
@@ -62,7 +60,21 @@ include_once("./resurser/konfig-db.php");
                 if (!$resultat) {
                     die("<p class=\"alert alert-warning\">Kunde inte köra sql-frågan: $conn->error </p>");
                 } else {
-                    echo "<p class=\"alert alert-success\">Användaren är registrerad</p>";
+                    /* Hittar vi användaren? */
+                    if ($resultat->num_rows == 0) {
+                        /* Inte hittat */
+                        echo("<p class=\"alert alert-warning\">Användarnamnet finns inte</p>");
+                    } else {
+                        /* Hittat, plocka ut raden med data */
+                        $rad = $resultat->fetch_assoc();
+
+                        /* Stämmer lösenordet? */
+                        if (password_verify($lösen, $rad['hash'])) {
+                            echo "<p class=\"alert alert-success\">Inloggningen lyckades</p>";
+                        } else {
+                            echo("<p class=\"alert alert-warning\">Lösenordet stämmer inte</p>");
+                        }
+                    }
                 }
 
                 /* Stäng ned anslutningen */
