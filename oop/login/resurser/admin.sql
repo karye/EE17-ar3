@@ -38,10 +38,6 @@ CREATE TABLE `admin` (
 -- Dumpning av Data i tabell `admin`
 --
 
-INSERT INTO `admin` (`id`, `anamn`, `hash`) VALUES
-(1, 'karim', '$2y$10$5BTvjy5if2LwDo3HOVsxoetXhbG5Yjn7CCUXNHjgloEhQiVLf4yYm'),
-(2, 'laura', '$2y$10$x1WDXzplAkuo3EGkpz.uYu8ibZALfOROVF2/8WL4Oc7c2MeIZeFzy');
-
 --
 -- Index för dumpade tabeller
 --
