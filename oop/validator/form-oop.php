@@ -1,4 +1,12 @@
 <?php
+/**
+* PHP version 7
+* @category   Lånekalkylator
+* @author     Karim Ryde <karye.webb@gmail.com>
+* @license    PHP CC
+*/
+/* @TODO: Be användaren skriva lösenordet 2 ggr */
+
 /* Visa alla fel! */
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

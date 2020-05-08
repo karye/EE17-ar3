@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Inloggningsmodul med databas
  * 
  * PHP version 7
- * @category   Vanligt procedural variant
+ * @category   OOP variant
  * @author     Karim Ryde <karye.webb@gmail.com>
  * @license    PHP CC
  */
@@ -12,7 +13,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 /* Skapa en databasanslutning */
-include_once("./resurser/konfig-db.php");
+require_once("./resurser/konfig-db.php");
+require_once("./Login.php");
 
 ?>
 <!DOCTYPE html>
@@ -27,19 +29,20 @@ include_once("./resurser/konfig-db.php");
 <body>
     <div class="kontainer">
         <header>
-            <h1>Inloggning</h1>
+            <h1>Inloggning med OOP</h1>
             <nav>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link" href="logga-in.php">Logga in</a>
+                        <a class="nav-link" href="logga-in-oop.php">Logga in</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="registrera.php">Registrera</a>
+                        <a class="nav-link active" href="registrera-oop.php">Registrera</a>
                     </li>
                 </ul>
             </nav>
         </header>
         <main>
+            <span class="badge badge-secondary">New</span>
             <?php
             /* Ta emot data */
             $anamn = filter_input(INPUT_POST, 'anamn', FILTER_SANITIZE_STRING);
@@ -47,25 +50,18 @@ include_once("./resurser/konfig-db.php");
 
             /* Om vi har tagit emot data då registrera i databasen */
             if ($anamn && $lösen) {
-                
-                /* Skapa en hash på lösenordet */
-                $hash = password_hash($lösen, PASSWORD_DEFAULT);
 
-                /* SQL för spara i en tabell */
-                $sql = "INSERT INTO admin SET anamn='$anamn', hash='$hash'";
+                /* Starta maskinen */
+                $login = new Login($conn);
 
-                /* Kör SQL-frågan */
-                $resultat = $conn->query($sql);
+                /* Registrera användaren */
+                $svar = $login->registrera($anamn, $lösen);
 
-                /* Gick det bra? */
-                if (!$resultat) {
-                    die("<p class=\"alert alert-warning\">Kunde inte köra sql-frågan: $conn->error </p>");
-                } else {
-                    echo "<p class=\"alert alert-success\">Användaren är registrerad</p>";
+                switch ($svar) {
+                    case '1':
+                        echo "<p class=\"alert alert-success\">Användaren är registrerad</p>";
+                        break;
                 }
-
-                /* Stäng ned anslutningen */
-                $conn->close();
             }
             ?>
             <form class="jumbotron" action="#" method="post">

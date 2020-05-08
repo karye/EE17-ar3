@@ -1,4 +1,11 @@
 <?php
+/**
+* PHP version 7
+* @category   Lånekalkylator
+* @author     Karim Ryde <karye.webb@gmail.com>
+* @license    PHP CC
+*/
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -57,6 +64,9 @@ function validateEmail($data)
         }
     }
 }
+                
+                
+/* @TODO: Be användaren skriva lösenordet 2 ggr */
 function validatePassword($data)
 {
     /* Först rensa bort onödiga mellanslag */
