@@ -28,7 +28,7 @@ require_once "./Blog.php";
 
 <body>
     <div class="kontainer">
-        <h1 class="display-4">Bloggen</h1>
+        <h1 class="display-4">Bloggen OOP</h1>
         <nav>
             <ul class="nav nav-tabs">
                 <li class="nav-item">

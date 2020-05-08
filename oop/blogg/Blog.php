@@ -30,13 +30,13 @@ class Blog
         /* Kör SQL-frågan */
         $resultat = $this->conn->query($sql);
 
-        /* Stäng ned anslutningen */
-        $this->conn->close();
-
         /* Gick det bra? */
         if ($resultat) {
             return $resultat;
         }
+
+        /* Stäng ned anslutningen */
+        $this->conn->close();
     }
 
     /* Spara ett inlägg i tabellen 
@@ -63,20 +63,38 @@ class Blog
     }
 
     /* Radera ett inlägg i tabellen 
-    @param 
+    @param $id
     */
-    public function radera()
+    public function radera($id)
     {
-        # code...
+        $sql = "DELETE FROM blog WHERE id = '$id'";
+        $resultat = $this->conn->query($sql);
+
+        /* Gick det bra? */
+        if ($resultat) {
+            return 1;
+        }
+
+        /* Stäng ned anslutningen */
+        $this->conn->close();
     }
 
     /* Ändra ett inlägg i tabellen 
-    @param 
-    @param 
-    @param 
+    @param $id
+    @param $rubrik
+    @param $inlägg
     */
-    public function uppdatera()
+    public function uppdatera($id, $rubrik, $inlägg)
     {
-        # code...
+        $sql = "UPDATE blog SET rubrik = '$rubrik', inlagg = '$inlägg' WHERE ID = '$id'";
+        $resultat = $this->conn->query($sql);
+
+        /* Gick det bra? */
+        if ($resultat) {
+            return 1;
+        }
+
+        /* Stäng ned anslutningen */
+        $this->conn->close();
     }
 }
