@@ -45,9 +45,9 @@ eForm.addEventListener("submit", function(e) {
     e.preventDefault();
 
     if (!startFlagga) {
-        startFlagga = true;
         reset();
         sparaNamn();
+        animate();
     }
 });
 
@@ -85,7 +85,7 @@ function reset() {
     boll.y = Math.random() * 400 + 50;
     boll.dx = Math.random() * 5;
     boll.dy = Math.random() * 5;
-    animate();
+    startFlagga = true;
 }
 
 /* Ritar en boll */
