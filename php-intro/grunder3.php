@@ -6,6 +6,6 @@ echo "Mixing HTML and PHP";
     echo "<h2>En underrubrik</h2>";
 
     echo "<div style=\"border:1px solid red;\">";
-        echo "Hejhej!";
+    echo "Hejhej!";
     echo "</div>";
 ?>
