@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Canvas</title>
+    <link rel="stylesheet" href="./pikachu.css">
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        /* Ikoner från https://icons8.com/icon/set/game/color */
+        /* Ställ in canvas */
+        const eCanvas = document.querySelector("canvas");
+        eCanvas.width = 1200;
+        eCanvas.height = 1000;
+        var ctx = eCanvas.getContext("2d");
+
+        /* ****************************** */
+        /*           Objekten             */
+        /* ****************************** */
+
+        var spel = {
+            poäng: 0,
+            key: 0,
+            isGameOver: false
+        }
+
+        var pikachu = {
+            x: Math.random() * 1000,
+            y: 900,
+            liv: 3,
+            bild: new Image()
+        };
+        var pokeball = {
+            x: 0,
+            y: 900,
+            dy: 0,
+            fire: false,
+            bild: new Image()
+        }
+        var explosion = {
+            bild: new Image()
+        }
+
+        var pidgey = {
+
+        };
+        var psyduck = {
+
+        };
+        var desura = {
+
+        };
+        var eevee = {
+
+        };
+        var meowth = {
+
+        };
+        var mankey = {
+
+        };
+        var dratini = {
+
+        };
+        var piggies = {
+
+        };
+        var crash = {
+
+        };
+
+        /* Ladda in bilderna */
+ 
+
+        /* ****************************** */
+        /*     Starta animationsloopen    */
+        /* ****************************** */
+
+
+        /* ****************************** */
+        /*            Funktioner          */
+        /* ****************************** */
+
+        /* Rita ut pikachu */
+        function ritaPikachu() {
+
+        }
+
+        /* Rita ut pokeball */
+        function ritaPokeball() {
+
+        }
+
+        /* Rita ut monster */
+        function ritaMonster(figur) {
+            /* Spawna om */
+
+            /* Om kollision med pokeboll rita ut explosion.. */
+
+            /* .. annars rita ut monstret */
+        }
+
+        /* https://keycode.info */
+        function uppdatera() {
+            switch (spel.key) {
+                case 39: // Pil åt höger
+
+                    break;
+                case 37: // pil åt vänster
+
+                    break;
+                case 32: // Mellanslag
+
+                    break;
+            }
+        }
+
+        /* Animationsloopen */
+        function loopen() {
+            /* Sudda ut hela canvas */
+
+
+            /* Rita ut pikachu */
+
+
+            /* Rita ut monstren */
+
+
+            /* Rita ut pokeball-skottet */
+
+            /* Uppdatera positioner */
+
+
+            requestAnimationFrame(loopen);
+        }
+
+        /* Lyssna på input */
+        window.addEventListener("keydown", function (e) {
+            spel.key = e.keyCode;
+        });
+        window.addEventListener("keyup", function (e) {
+            spel.key = 0;
+        });
+
+    </script>
+</body>
+</html>
