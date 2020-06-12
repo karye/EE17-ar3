@@ -1,5 +1,5 @@
 <?php
-include_once "./admin/konfig-db.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/_databaser/konfig-db.php";
 ?>
 <!DOCTYPE html>
 <html lang="sv">
